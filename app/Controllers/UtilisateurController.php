@@ -44,6 +44,7 @@ class UtilisateurController extends BaseController
             ]);
             return redirect()->to('/userProfil');
         }
+
         $user = $this->utilisateurModel->checkUser($nom, $password);
 
         if (! $user) {
@@ -71,8 +72,12 @@ class UtilisateurController extends BaseController
         $user = $this->utilisateurModel->find($userId);
 
         if (!$user) {
-            return redirect()->to('/userAuth')
-                ->with('error', 'Utilisateur non trouvé.');
+            $user = [
+                'nom' => 'user',
+                'date_inscription' => date('Y-m-d'),
+                'genre' => 'Homme',
+                'gold' => FALSE,
+            ];
         }
 
         return view('user/userProfil', ['user' => $user]);
