@@ -9,7 +9,7 @@ class UtilisateurModel extends Model
     protected $table = 'utilisateur';
     protected $primaryKey = 'id';
     protected $returnType = 'array';
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $allowedFields = [
         'nom',
         'mot_de_passe',
@@ -30,7 +30,19 @@ class UtilisateurModel extends Model
         if ($user && password_verify($mot_de_passe, $user['mot_de_passe'])) {
             return $user;
         }
-        return null; 
+        return null;
+    }
+
+    public function createUser(string $nom, string $mot_de_passe, string $genre): int {
+        $hashedPassword = password_hash($mot_de_passe, PASSWORD_DEFAULT);
+        $data = [
+            'nom' => $nom,
+            'mot_de_passe' => $hashedPassword,
+            'genre' => $genre,
+            'date_inscription' => date('Y-m-d H:i:s'),
+            'gold' => 0
+        ];
+        return $this->insert($data);
     }
 
 }
