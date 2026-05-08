@@ -1,10 +1,11 @@
 <?php 
     $gold_inf = $user['gold'] == 1 ? "Vous êtes abonné à l'offre gold" : "Vous n'êtes pas abonné à l'offre gold";
     $objectifLabels = [1 => 'Prise de masse musculaire', 2 => 'Perte de poids', 3 => 'Atteindre mon IMC idéal'];
-    $mon_objectif = isset($objectifsInfos[0]) ? $objectifLabels[$objectifsInfos[0]['id_objectif']] : "Aucun objectif";
+    $hasObjectif = !empty($objectifsInfos) && isset($objectifsInfos[0]);
+    $mon_objectif = $hasObjectif ? $objectifLabels[$objectifsInfos[0]['id_objectif']] : "Aucun objectif";
     $dateInsc = date('d/m/Y', strtotime($user['date_inscription']));
     $dateMesure = date('d/m/Y H:i', strtotime($santeInfos[0]['date_mesure']));
-    $dateObjectif = date('d/m/Y', strtotime($objectifsInfos[0]['date_choix']));
+    $dateObjectif = $hasObjectif ? date('d/m/Y', strtotime($objectifsInfos[0]['date_choix'])) : null;
     $imcFormatted = number_format($imc, 2, ',', ' ');
 ?>
 <!DOCTYPE html>
@@ -37,15 +38,20 @@
     </div>
 
     <div class="section">
-        <h2>Mon objectif - posé le <?= $dateObjectif ?></h2>
-        <p><?= htmlspecialchars($mon_objectif) ?></p>
-        <p>Valeur cible : <?= htmlspecialchars($objectifsInfos[0]['poids']) ?></p>
+        <h2>Mon objectif</h2>
+        <?php if ($hasObjectif): ?>
+            <p>Objectif posé le <?= $dateObjectif ?></p>
+            <p><?= htmlspecialchars($mon_objectif) ?></p>
+            <p>Valeur cible : <?= htmlspecialchars($objectifsInfos[0]['poids']) ?></p>
+        <?php else: ?>
+            <p style="color: #666; font-style: italic;">Vous n'avez pas encore posé d'objectif.</p>
+            <p><a href="#update-objectif">Posez votre premier objectif</a></p>
+        <?php endif; ?>
     </div>
 
     <div class="section">
         <h2>Soumettre une nouvelle mesure</h2>
         <form action="/update-sante" method="post">
-            <input type="hidden" name="id_utilisateur" value="1">
             <label>Poids (kg) :</label><br>
             <input type="number" name="poids" step="0.1" required><br>
             <label>Taille (cm) :</label><br>
@@ -57,7 +63,6 @@
     <div class="section">
         <h2>Soumettre un nouvel objectif</h2>
         <form action="/update-objectif" method="post">
-            <input type="hidden" name="id_utilisateur" value="1">
             <label>Objectif :</label><br>
             <input type="radio" name="id_objectif" value="1" id="obj_1">
             <label for="obj_1">Prise de masse musculaire</label><br>
@@ -74,7 +79,6 @@
     <div class="section">
         <h2>Modifier mes informations personnelles</h2>
         <form action="/update-utilisateur" method="post">
-            <input type="hidden" name="id_utilisateur" value="1">
             <label>Nom :</label><br>
             <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required><br>
             <label>Email :</label><br>

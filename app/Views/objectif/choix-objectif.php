@@ -8,9 +8,6 @@
 <body>
     <h1>Choisissez votre objectif</h1>
     <form action="/create-objectif" method="post">
-        <input type="number" name="id_utilisateur" id="id_utilisateur" placeholder="ID Utilisateur" required>
-        <br><br>
-
         <label>Sélectionnez votre objectif :</label><br>
         <input type="radio" name="id_objectif" value="1" id="objectif_1">
         <label for="objectif_1">Prise de masse musculaire</label><br>

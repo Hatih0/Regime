@@ -47,7 +47,7 @@ class UtilisateurController extends BaseController
                 'nom'          => $nom,
                 'is_logged' => true,
             ]);
-            return redirect()->to('/userProfil');
+            return redirect()->to('/user-profile');
         }
 
         $user = $this->utilisateurModel->checkUser($nom, $password);
@@ -63,7 +63,7 @@ class UtilisateurController extends BaseController
             'is_logged' => true,
         ]);
 
-        return redirect()->to('/userProfil');
+        return redirect()->to('/user-profile');
     }
 
     public function profil()
@@ -85,6 +85,7 @@ class UtilisateurController extends BaseController
             ];
         }
 
+        // return redirect()->to('/user-profile');
         return view('user/userProfil', ['user' => $user]);
     }
 
@@ -123,8 +124,12 @@ class UtilisateurController extends BaseController
 
     public function getUserProfile()
     {
-        // $id_utilisateur = $this->request->getGet('user_id');
-        $id_utilisateur = 1 ; // A remplacer par session user_id
+        $id_utilisateur = session()->get('user_id');
+        
+        if (!$id_utilisateur) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+        
         $objectifsInfos = $this->objectifUtilisateurModel->getAllObjectifUser($id_utilisateur);
         $santeInfos = $this->santeUtilisateurModel->getAllSanteInfoUser($id_utilisateur);
         $user = $this->utilisateurModel->getInfoUser($id_utilisateur);
@@ -144,7 +149,12 @@ class UtilisateurController extends BaseController
 
     public function updateUtilisateur()
     {
-        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
+        $id_utilisateur = session()->get('user_id');
+        
+        if (!$id_utilisateur) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+        
         $nom = trim((string) $this->request->getPost('nom'));
         $email = trim((string) $this->request->getPost('email'));
         $genre = (string) $this->request->getPost('genre');
@@ -164,7 +174,12 @@ class UtilisateurController extends BaseController
 
     public function updateSante()
     {
-        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
+        $id_utilisateur = session()->get('user_id');
+        
+        if (!$id_utilisateur) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+        
         $poids = (float) $this->request->getPost('poids');
         $taille = (float) $this->request->getPost('taille');
 
@@ -183,7 +198,12 @@ class UtilisateurController extends BaseController
 
     public function updateObjectif()
     {
-        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
+        $id_utilisateur = session()->get('user_id');
+        
+        if (!$id_utilisateur) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+        
         $id_objectif = (int) $this->request->getPost('id_objectif');
         $poids = (float) $this->request->getPost('poids');
 

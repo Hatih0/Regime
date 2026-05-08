@@ -15,6 +15,9 @@ class ObjectifUtilisateurController extends BaseController
     }
 
     public function choixObjectif () {
+        if (!session()->get('user_id')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
         return view('objectif/choix-objectif');
     }
 
@@ -22,9 +25,12 @@ class ObjectifUtilisateurController extends BaseController
     // public function createObjectifUser(int $id_utilisateur, int $choix, float $poids): int
     public function createObjectifUser()
     {
-
-        //A convertir en session 
-        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
+        $id_utilisateur = session()->get('user_id');
+        
+        if (!$id_utilisateur) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+        
         $poids = (float) $this->request->getPost('poids');
         $id_objectif = (int) $this->request->getPost('id_objectif');
 
