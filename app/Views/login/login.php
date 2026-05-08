@@ -9,6 +9,10 @@
 
     <?php $firstUser = $firstUser ?? null; ?>
 
+    <?php if (session()->getFlashdata('error')): ?>
+        <p style="color: red;"><?= esc(session()->getFlashdata('error')) ?></p>
+    <?php endif; ?>
+
     <h1>Login Page</h1>
     <form action="<?= site_url('/check-user') ?>" method="post">
         <label for="nom">Nom:</label>

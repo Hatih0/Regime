@@ -9,9 +9,10 @@
     
     <h1> user Profil </h1>
 
-    <p> <?= $error ?> </p>
-
-    <h3> <?php echo $user['nom']; ?> </h3>
+    <p>Nom: <?php echo $user['nom']; ?> </p>
+    <p>Date d'inscription: <?php echo $user['date_inscription']; ?> </p>
+    <p>Genre: <?php echo $user['genre']; ?> </p>
+    <p>Gold: <?php echo $user['gold'] ? 'Oui' : 'Non'; ?> </p>
 
 </body>
 </html>

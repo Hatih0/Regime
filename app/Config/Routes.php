@@ -13,7 +13,8 @@ $routes->post('/check-user', 'UtilisateurController::checkUser');
 
 $routes->get('/dashboard', 'DashboardController::index');
 
-$routes->get('/userProfil', 'UtilisateurController::profil');
+// $routes->get('/userProfil', 'UtilisateurController::profil');
+$routes->get('/user-profile', 'UtilisateurController::getUserProfile');
 
 $routes->get('/adminAuth', 'AdminController::login');
 
@@ -47,3 +48,19 @@ $routes->group('', ['filter' => 'adminauth'], static function ($routes) {
     $routes->get('/exercices/(:num)/delete', 'ExerciceController::delete/$1');
 
 });
+
+$routes->get('/signin', 'UtilisateurController::signin');
+$routes->get('/login', 'UtilisateurController::login');
+
+$routes->post('/create-user', 'UtilisateurController::createUser');
+
+$routes->get('/choix-objectif', 'ObjectifUtilisateurController::choixObjectif');
+
+$routes->post('/create-objectif', 'ObjectifUtilisateurController::createObjectifUser');
+
+$routes->get('/user-profile', 'UtilisateurController::getUserProfile');
+
+$routes->post('/update-utilisateur', 'UtilisateurController::updateUtilisateur');
+$routes->post('/update-sante', 'UtilisateurController::updateSante');
+$routes->post('/update-objectif', 'UtilisateurController::updateObjectif');
+
