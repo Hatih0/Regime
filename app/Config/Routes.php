@@ -8,6 +8,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'UtilisateurController::index');
 
 $routes->get('/userAuth', 'UtilisateurController::login');
+$routes->get('/', 'UtilisateurController::login');
+$routes->get('/login', 'UtilisateurController::login');
 
 $routes->post('/check-user', 'UtilisateurController::checkUser');
 
@@ -47,3 +49,17 @@ $routes->group('', ['filter' => 'adminauth'], static function ($routes) {
     $routes->get('/exercices/(:num)/delete', 'ExerciceController::delete/$1');
 
 });
+$routes->get('/signin', 'UtilisateurController::signin');
+
+$routes->post('/create-user', 'UtilisateurController::createUser');
+
+$routes->get('/choix-objectif', 'ObjectifUtilisateurController::choixObjectif');
+
+$routes->post('/create-objectif', 'ObjectifUtilisateurController::createObjectifUser');
+
+$routes->get('/user-profile', 'UtilisateurController::getUserProfile');
+
+$routes->post('/update-utilisateur', 'UtilisateurController::updateUtilisateur');
+$routes->post('/update-sante', 'UtilisateurController::updateSante');
+$routes->post('/update-objectif', 'UtilisateurController::updateObjectif');
+
