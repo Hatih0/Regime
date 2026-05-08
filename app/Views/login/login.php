@@ -10,7 +10,7 @@
     <?php $firstUser = $firstUser ?? null; ?>
 
     <h1>Login Page</h1>
-    <form action="/check-user" method="post">
+    <form action="<?= site_url('/check-user') ?>" method="post">
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" value="<?= esc($firstUser['nom'] ?? 'user') ?>" required>
         <br>
@@ -18,5 +18,6 @@
         <input type="password" id="password" name="password" value="<?= esc($firstUser['mot_de_passe'] ?? 'user123') ?>" required>
         <br>
         <button type="submit">Login</button>
+    </form>
 </body>
 </html>

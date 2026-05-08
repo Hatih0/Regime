@@ -7,11 +7,11 @@
 </head>
 <body>
     
-    <h1>About us</h1>
-    <p>Welcome to the Site vitrine!</p>
+    <h1> user Profil </h1>
 
-    <a href="<?= site_url('/adminAuth') ?>">Admin Login</a><br>
-    <a href="<?= site_url('/userAuth') ?>">User Login</a>
+    <p> <?= $error ?> </p>
+
+    <h3> <?php echo $user['nom']; ?> </h3>
 
 </body>
 </html>
