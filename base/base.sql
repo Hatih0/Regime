@@ -2,6 +2,12 @@ CREATE DATABASE IF NOT EXISTS regime;
 
 use regime;
 
+CREATE TABLE admin (
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100),
+    password VARCHAR(255)
+);
+
 CREATE TABLE utilisateur (
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100),
@@ -13,10 +19,11 @@ CREATE TABLE utilisateur (
 
 CREATE TABLE sante_utilisateur (
     id SERIAL PRIMARY KEY,
-    id_utilisateur INT REFERENCES utilisateur(id),
+    id_utilisateur INT NOT NULL,
     taille DECIMAL(5,2),
     poids DECIMAL(5,2),
-    date_mesure TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    date_mesure TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_sante_utilisateur_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id) ON DELETE CASCADE
 );
 
 CREATE TABLE objectif (
@@ -31,9 +38,11 @@ INSERT INTO objectif(nom) VALUES
 
 CREATE TABLE utilisateur_objectif (
     id SERIAL PRIMARY KEY,
-    id_utilisateur INT REFERENCES utilisateur(id),
-    id_objectif INT REFERENCES objectif(id),
-    date_choix TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id_utilisateur INT NOT NULL,
+    id_objectif INT NOT NULL,
+    date_choix TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_utilisateur_objectif_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id) ON DELETE CASCADE,
+    CONSTRAINT fk_utilisateur_objectif_objectif FOREIGN KEY (id_objectif) REFERENCES objectif(id) ON DELETE CASCADE
 );
 
 CREATE TABLE regime (
@@ -49,8 +58,10 @@ CREATE TABLE regime (
 
 CREATE TABLE regime_objectif (
     id SERIAL PRIMARY KEY,
-    id_regime INT REFERENCES regime(id),
-    id_objectif INT REFERENCES objectif(id)
+    id_regime INT NOT NULL,
+    id_objectif INT NOT NULL,
+    CONSTRAINT fk_regime_objectif_regime FOREIGN KEY (id_regime) REFERENCES regime(id) ON DELETE CASCADE,
+    CONSTRAINT fk_regime_objectif_objectif FOREIGN KEY (id_objectif) REFERENCES objectif(id) ON DELETE CASCADE
 );
 
 CREATE TABLE activite_sportive (
@@ -62,14 +73,17 @@ CREATE TABLE activite_sportive (
 
 CREATE TABLE activite_objectif (
     id SERIAL PRIMARY KEY,
-    id_activite INT REFERENCES activite_sportive(id),
-    id_objectif INT REFERENCES objectif(id)
+    id_activite INT NOT NULL,
+    id_objectif INT NOT NULL,
+    CONSTRAINT fk_activite_objectif_activite FOREIGN KEY (id_activite) REFERENCES activite_sportive(id) ON DELETE CASCADE,
+    CONSTRAINT fk_activite_objectif_objectif FOREIGN KEY (id_objectif) REFERENCES objectif(id) ON DELETE CASCADE
 );
 
 CREATE TABLE portefeuille (
     id SERIAL PRIMARY KEY,
-    id_utilisateur INT REFERENCES utilisateur(id),
-    solde DECIMAL(10,2) DEFAULT 0
+    id_utilisateur INT NOT NULL,
+    solde DECIMAL(10,2) DEFAULT 0,
+    CONSTRAINT fk_portefeuille_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id) ON DELETE CASCADE
 );
 
 CREATE TABLE code_rechargement (
@@ -81,15 +95,19 @@ CREATE TABLE code_rechargement (
 
 CREATE TABLE rechargement (
     id SERIAL PRIMARY KEY,
-    id_portefeuille INT REFERENCES portefeuille(id),
-    id_code INT REFERENCES code_rechargement(id),
-    date_rechargement TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id_portefeuille INT NOT NULL,
+    id_code INT NOT NULL,
+    date_rechargement TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_rechargement_portefeuille FOREIGN KEY (id_portefeuille) REFERENCES portefeuille(id) ON DELETE CASCADE,
+    CONSTRAINT fk_rechargement_code FOREIGN KEY (id_code) REFERENCES code_rechargement(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE achat_regime (
     id SERIAL PRIMARY KEY,
-    id_utilisateur INT REFERENCES utilisateur(id),
-    id_regime INT REFERENCES regime(id),
+    id_utilisateur INT NOT NULL,
+    id_regime INT NOT NULL,
     prix_paye DECIMAL(10,2),
-    date_achat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    date_achat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_achat_regime_utilisateur FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id) ON DELETE CASCADE,
+    CONSTRAINT fk_achat_regime_regime FOREIGN KEY (id_regime) REFERENCES regime(id) ON DELETE RESTRICT
 );

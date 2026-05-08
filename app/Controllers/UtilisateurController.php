@@ -14,6 +14,11 @@ class UtilisateurController extends BaseController
         $this->utilisateurModel = new UtilisateurModel();
     }
 
+    public function index()
+    {   
+        return view('dashboard/index');
+    }
+
     public function login(): string
     {
         return view('login/login', [
@@ -35,9 +40,9 @@ class UtilisateurController extends BaseController
             session()->set([
                 'user_id'      => 1, 
                 'nom'          => $nom,
-                'is_logged_in' => true,
+                'is_logged' => true,
             ]);
-            return redirect()->to('/dashboard');
+            return redirect()->to('/userProfil');
         }
         $user = $this->utilisateurModel->checkUser($nom, $password);
 
@@ -49,10 +54,28 @@ class UtilisateurController extends BaseController
         session()->set([
             'user_id'      => $user['id'],
             'nom'          => $user['nom'],
-            'is_logged_in' => true,
+            'is_logged' => true,
         ]);
 
-        return redirect()->to('/dashboard');
+        return redirect()->to('/userProfil');
+    }
+
+    public function profil()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/userAuth')
+                ->with('error', 'Vous devez être connecté pour accéder à cette page.');
+        }
+
+        $userId = session()->get('user_id');
+        $user = $this->utilisateurModel->find($userId);
+
+        if (!$user) {
+            return redirect()->to('/userAuth')
+                ->with('error', 'Utilisateur non trouvé.');
+        }
+
+        return view('user/userProfil', ['user' => $user]);
     }
 
 }
