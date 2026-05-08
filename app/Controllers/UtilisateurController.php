@@ -114,4 +114,62 @@ class UtilisateurController extends BaseController
         return view('profile/profile', $data);
     }
 
+    public function updateUtilisateur()
+    {
+        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
+        $nom = trim((string) $this->request->getPost('nom'));
+        $email = trim((string) $this->request->getPost('email'));
+        $genre = (string) $this->request->getPost('genre');
+
+        if (empty($nom) || empty($email) || empty($genre)) {
+            return redirect()->back()->with('error', 'Tous les champs sont requis.');
+        }
+
+        $updated = $this->utilisateurModel->updateUtilisateur($id_utilisateur, $nom, $email, $genre);
+        
+        if ($updated) {
+            return redirect()->back()->with('success', 'Informations mises à jour.');
+        }
+        
+        return redirect()->back()->with('error', 'Erreur lors de la mise à jour.');
+    }
+
+    public function updateSante()
+    {
+        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
+        $poids = (float) $this->request->getPost('poids');
+        $taille = (float) $this->request->getPost('taille');
+
+        if ($poids <= 0 || $taille <= 0) {
+            return redirect()->back()->with('error', 'Les valeurs doivent être positives.');
+        }
+
+        $created = $this->santeUtilisateurModel->createSanteInfo($id_utilisateur, $poids, $taille);
+        
+        if ($created) {
+            return redirect()->back()->with('success', 'Nouvelle mesure enregistrée.');
+        }
+        
+        return redirect()->back()->with('error', 'Erreur lors de l\'enregistrement.');
+    }
+
+    public function updateObjectif()
+    {
+        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
+        $id_objectif = (int) $this->request->getPost('id_objectif');
+        $poids = (float) $this->request->getPost('poids');
+
+        if (!in_array($id_objectif, [1, 2, 3]) || $poids <= 0) {
+            return redirect()->back()->with('error', 'Données invalides.');
+        }
+
+        $created = $this->objectifUtilisateurModel->createObjectifUser($id_utilisateur, $id_objectif, $poids);
+        
+        if ($created) {
+            return redirect()->back()->with('success', 'Nouvel objectif enregistré.');
+        }
+        
+        return redirect()->back()->with('error', 'Erreur lors de l\'enregistrement.');
+    }
+
 }

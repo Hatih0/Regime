@@ -8,19 +8,53 @@
 <body>
     <h1>Choisissez votre objectif</h1>
     <form action="/create-objectif" method="post">
-        <input type="number" name="id" id="id" placeholder="ID Utilisateur" required>
+        <input type="number" name="id_utilisateur" id="id_utilisateur" placeholder="ID Utilisateur" required>
+        <br><br>
+
+        <label>Sélectionnez votre objectif :</label><br>
+        <input type="radio" name="id_objectif" value="1" id="objectif_1">
+        <label for="objectif_1">Prise de masse musculaire</label><br>
+        
+        <input type="radio" name="id_objectif" value="2" id="objectif_2" checked>
+        <label for="objectif_2">Perte de poids</label><br>
+        
+        <input type="radio" name="id_objectif" value="3" id="objectif_3">
+        <label for="objectif_3">Atteindre mon IMC idéal</label><br>
         <br>
-        <select name="choix" id="choix" required>
-            <option value="">Choisissez votre objectif</option>
-            <option value="1">Prise de masse musculaire</option>
-            <option value="2">Perte de poids</option>
-            <option value="3">Atteindre mon IMC ideal</option>
-        </select>
-        <br>
-        <input type="number" name="poids" id="poids" placeholder="Poids (kg) ou IMC (kg/cm²)" required>
-        <br>
+
+        <label for="poids">Valeur cible :</label><br>
+        <input type="number" name="poids" id="poids" step="0.1" required value="10">
+        <span id="unite">kg</span>
+        <br><br>
+
         <button type="submit">Valider</button>
     </form>
 
+    <script>
+        const radioPoids = document.getElementById('objectif_1');
+        const radioImc = document.getElementById('objectif_3');
+        const inputPoids = document.getElementById('poids');
+        const spanUnite = document.getElementById('unite');
+
+        function updateInputBasedOnObjective() {
+            if (radioPoids.checked) {
+                inputPoids.value = 10;
+                spanUnite.textContent = 'kg';
+            } else if (radioImc.checked) {
+                inputPoids.value = 22.0;
+                spanUnite.textContent = 'kg/m²';
+            } else {
+                inputPoids.value = 10;
+                spanUnite.textContent = 'kg';
+            }
+        }
+
+        document.querySelectorAll('input[name="id_objectif"]').forEach(radio => {
+            radio.addEventListener('change', updateInputBasedOnObjective);
+        });
+
+        // Initialiser au chargement
+        updateInputBasedOnObjective();
+    </script>
 </body>
 </html>

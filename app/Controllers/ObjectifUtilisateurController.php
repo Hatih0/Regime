@@ -24,9 +24,9 @@ class ObjectifUtilisateurController extends BaseController
     {
 
         //A convertir en session 
-        $id_utilisateur = (int) $this->request->getPost('id');
+        $id_utilisateur = (int) $this->request->getPost('id_utilisateur');
         $poids = (float) $this->request->getPost('poids');
-        $id_objectif = (int) $this->request->getPost('choix');
+        $id_objectif = (int) $this->request->getPost('id_objectif');
 
         if (empty($id_utilisateur) || empty($id_objectif) || empty($poids)) {
             return redirect()->to('/choix-objectif');

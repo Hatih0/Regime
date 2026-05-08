@@ -57,4 +57,14 @@ class UtilisateurModel extends Model
                 
     }
 
+    public function updateUtilisateur(int $id, string $nom, string $email, string $genre): bool
+    {
+        $data = [
+            'nom' => $nom,
+            'email' => $email,
+            'genre' => $genre
+        ];
+        return $this->update($id, $data);
+    }
+
 }

@@ -22,3 +22,7 @@ $routes->post('/create-objectif', 'ObjectifUtilisateurController::createObjectif
 
 $routes->get('/user-profile', 'UtilisateurController::getUserProfile');
 
+$routes->post('/update-utilisateur', 'UtilisateurController::updateUtilisateur');
+$routes->post('/update-sante', 'UtilisateurController::updateSante');
+$routes->post('/update-objectif', 'UtilisateurController::updateObjectif');
+
