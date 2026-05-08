@@ -33,3 +33,149 @@ in APPPATH\Controllers\UtilisateurController.php on line 15.
  4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
  5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
  6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 12:09:14 --> Error: Call to undefined method App\Controllers\ObjectifUtilisateurController::redirect()
+[Method: GET, Route: choix-objectif]
+in APPPATH\Controllers\ObjectifUtilisateurController.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\ObjectifUtilisateurController->choixObjectif()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ObjectifUtilisateurController))
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 12:11:47 --> Error: Call to undefined function App\Controllers\choixObjectif()
+[Method: POST, Route: create-objectif]
+in APPPATH\Controllers\ObjectifUtilisateurController.php on line 44.
+ 1 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\ObjectifUtilisateurController->createObjectifUser()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ObjectifUtilisateurController))
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-08 12:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-08 13:13:12 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "user_id=1"
+[Method: GET, Route: user-profile/user_id=1]
+in SYSTEMPATH\Router\Router.php on line 768.
+ 1 SYSTEMPATH\Router\Router.php(219): CodeIgniter\Router\Router->checkDisallowedChars('user-profile/user_id=1')
+ 2 SYSTEMPATH\CodeIgniter.php(829): CodeIgniter\Router\Router->handle('user-profile/user_id=1')
+ 3 SYSTEMPATH\CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:13:34 --> TypeError: App\Models\ObjectifUtilisateurModel::getAllObjectifUser(): Argument #1 ($id_utilisateur) must be of type int, null given, called in F:\Regime\app\Controllers\UtilisateurController.php on line 100
+[Method: GET, Route: user-profile]
+in APPPATH\Models\ObjectifUtilisateurModel.php on line 41.
+ 1 APPPATH\Controllers\UtilisateurController.php(100): App\Models\ObjectifUtilisateurModel->getAllObjectifUser(null)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:14:11 --> Error: Call to undefined method CodeIgniter\Database\MySQLi\Connection::select()
+[Method: GET, Route: user-profile]
+in APPPATH\Models\UtilisateurModel.php on line 54.
+ 1 APPPATH\Controllers\UtilisateurController.php(102): App\Models\UtilisateurModel->getInfoUser(1)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:14:39 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UtilisateurModel::get_where
+[Method: GET, Route: user-profile]
+in SYSTEMPATH\Model.php on line 761.
+ 1 APPPATH\Models\UtilisateurModel.php(55): CodeIgniter\Model->__call('get_where', [...])
+ 2 APPPATH\Controllers\UtilisateurController.php(102): App\Models\UtilisateurModel->getInfoUser(1)
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:17:09 --> ErrorException: Undefined variable $data
+[Method: GET, Route: user-profile]
+in APPPATH\Views\profile\profile.php on line 3.
+ 1 APPPATH\Views\profile\profile.php(3): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'F:\\Regime\\app\\Views\\profile\\profile.php', 3)
+ 2 SYSTEMPATH\View\View.php(240): include('F:\\Regime\\app\\Views\\profile\\profile.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('profile/profile', [], true)
+ 5 APPPATH\Controllers\UtilisateurController.php(110): view('profile/profile', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:24:58 --> ErrorException: Undefined array key "taille"
+[Method: GET, Route: user-profile]
+in APPPATH\Views\profile\profile.php on line 29.
+ 1 APPPATH\Views\profile\profile.php(29): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "taille"', 'F:\\Regime\\app\\Views\\profile\\profile.php', 29)
+ 2 SYSTEMPATH\View\View.php(240): include('F:\\Regime\\app\\Views\\profile\\profile.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('profile/profile', [], true)
+ 5 APPPATH\Controllers\UtilisateurController.php(110): view('profile/profile', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:31:43 --> ErrorException: Undefined array key "nom"
+[Method: GET, Route: user-profile]
+in APPPATH\Views\profile\profile.php on line 36.
+ 1 APPPATH\Views\profile\profile.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nom"', 'F:\\Regime\\app\\Views\\profile\\profile.php', 36)
+ 2 SYSTEMPATH\View\View.php(240): include('F:\\Regime\\app\\Views\\profile\\profile.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('profile/profile', [], true)
+ 5 APPPATH\Controllers\UtilisateurController.php(110): view('profile/profile', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:37:33 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ObjectifUtilisateurModel::getAllObjectifs
+[Method: GET, Route: user-profile]
+in SYSTEMPATH\Model.php on line 761.
+ 1 APPPATH\Controllers\UtilisateurController.php(103): CodeIgniter\Model->__call('getAllObjectifs', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:37:58 --> ErrorException: Undefined variable $objectifsInfos
+[Method: GET, Route: user-profile]
+in APPPATH\Controllers\UtilisateurController.php on line 107.
+ 1 APPPATH\Controllers\UtilisateurController.php(107): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $objectifsInfos', 'F:\\Regime\\app\\Controllers\\UtilisateurController.php', 107)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:38:30 --> ErrorException: Undefined variable $objectifsInfos
+[Method: GET, Route: user-profile]
+in APPPATH\Controllers\UtilisateurController.php on line 107.
+ 1 APPPATH\Controllers\UtilisateurController.php(107): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $objectifsInfos', 'F:\\Regime\\app\\Controllers\\UtilisateurController.php', 107)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-08 13:38:50 --> ErrorException: Undefined variable $mon_objectif
+[Method: GET, Route: user-profile]
+in APPPATH\Views\profile\profile.php on line 37.
+ 1 APPPATH\Views\profile\profile.php(37): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $mon_objectif', 'F:\\Regime\\app\\Views\\profile\\profile.php', 37)
+ 2 SYSTEMPATH\View\View.php(240): include('F:\\Regime\\app\\Views\\profile\\profile.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('profile/profile', [], true)
+ 5 APPPATH\Controllers\UtilisateurController.php(112): view('profile/profile', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->getUserProfile()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))

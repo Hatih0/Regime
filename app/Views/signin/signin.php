@@ -9,6 +9,7 @@
     <h1>Sign In</h1>
     <form action="/create-user" method="post">
         <input type="text" name="nom" id="nom" placeholder="Nom" required><br>
+        <input type="text" name="email" id="email" placeholder="Email" required><br>
         <input type="password" name="mot_de_passe" id="mot_de_passe" placeholder="Mot de passe" required><br>
         <select name="genre" id="genre" required>
             <option value="">Select Genre</option>

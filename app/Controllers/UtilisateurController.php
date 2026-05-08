@@ -4,18 +4,21 @@ namespace App\Controllers;
 
 use App\Models\UtilisateurModel;
 use App\Models\SanteUtilisateurModel;
+use App\Models\ObjectifUtilisateurModel;
 
 class UtilisateurController extends BaseController
 {
     private UtilisateurModel $utilisateurModel; 
     private SanteUtilisateurModel $santeUtilisateurModel; 
+    private ObjectifUtilisateurModel $objectifUtilisateurModel; 
     
     public function __construct()
     {
         $this->utilisateurModel = new UtilisateurModel();
         $this->santeUtilisateurModel = new SanteUtilisateurModel();
+        $this->objectifUtilisateurModel = new ObjectifUtilisateurModel();
     }
-    
+
     public function login(): string
     {
         return view('login/login', [
@@ -65,6 +68,7 @@ class UtilisateurController extends BaseController
     public function createUser()
     {
         $nom = trim((string) $this->request->getPost('nom'));
+        $email = trim((string) $this->request->getPost('email'));
         $mot_de_passe = (string) $this->request->getPost('mot_de_passe');
         $genre = (string) $this->request->getPost('genre');
 
@@ -76,17 +80,38 @@ class UtilisateurController extends BaseController
         $taille = (float) $this->request->getPost('taille');
 
         try {
-            $createdId = $this->utilisateurModel->createUser($nom, $mot_de_passe, $genre);
+            $createdId = $this->utilisateurModel->createUser($nom, $email, $mot_de_passe, $genre);
             $createdSanteId = $this->santeUtilisateurModel->createSanteInfo($createdId, $poids, $taille);
 
             if (! $createdId || ! $createdSanteId) {
                 return redirect()->to('/signin');
             }
-
             return redirect()->to('/login');
+            
         } catch (\Exception $e) {
             return redirect()->to('/signin');
         }
+    }
+
+    public function getUserProfile()
+    {
+        // $id_utilisateur = $this->request->getGet('user_id');
+        $id_utilisateur = 1 ; // A remplacer par session user_id
+        $objectifsInfos = $this->objectifUtilisateurModel->getAllObjectifUser($id_utilisateur);
+        $santeInfos = $this->santeUtilisateurModel->getAllSanteInfoUser($id_utilisateur);
+        $user = $this->utilisateurModel->getInfoUser($id_utilisateur);
+        $imcInfos = $this->santeUtilisateurModel->calculIMC($id_utilisateur);
+        // $objectifs = $this->objectifUtilisateurModel->getAllObjectifs($id_utilisateur);
+
+        $data = [
+            'user' => $user,
+            'objectifsInfos' => $objectifsInfos,
+            'santeInfos' => $santeInfos,
+            'imc' => $imcInfos
+            // ,'objectifs' => $objectifs
+        ];
+        
+        return view('profile/profile', $data);
     }
 
 }

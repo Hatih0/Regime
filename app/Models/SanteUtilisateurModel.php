@@ -34,12 +34,24 @@ class SanteUtilisateurModel extends Model
         return $this->insert($data);
     }
 
-    //Farany recent ndrindra
-    public function getSanteInfoByUserId(int $id_utilisateur): ?array
+    public function getAllSanteInfoUser(int $id_utilisateur): ?array
     {
         return $this->where('id_utilisateur', $id_utilisateur)
         ->orderBy('date_mesure', 'DESC')
-        ->first();
+        ->findAll();
     }
 
+    //Farany recent ndrindra
+    public function getCurrentSanteInfoUser(int $id_utilisateur): ?array
+    {
+        return $this->where('id_utilisateur', $id_utilisateur)->orderBy('date_mesure', 'DESC')->first();
+    }
+
+    public function calculIMC(int $id_utilisateur): ?float
+    {
+        $data = $this->where('id_utilisateur', $id_utilisateur)->orderBy('date_mesure', 'DESC')->first();
+        $poids = $data['poids'];
+        $taille = $data['taille'] / 100;
+        return (float) ( $poids / ($taille * $taille) ) ;
+    }
 }

@@ -16,3 +16,9 @@ $routes->get('/signin', 'UtilisateurController::signin');
 
 $routes->post('/create-user', 'UtilisateurController::createUser');
 
+$routes->get('/choix-objectif', 'ObjectifUtilisateurController::choixObjectif');
+
+$routes->post('/create-objectif', 'ObjectifUtilisateurController::createObjectifUser');
+
+$routes->get('/user-profile', 'UtilisateurController::getUserProfile');
+
