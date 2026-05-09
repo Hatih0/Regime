@@ -156,7 +156,7 @@ class RegimeController extends BaseController
         try {
             // Création du PDF
             $pdf = new PDFModel('P', 'mm', 'A4');
-            $pdf->setTitreDocument($this->encode('Plan de Régime Personnalisé'));
+            $pdf->setTitreDocument($this->encode('Plan'));
             $pdf->AliasNbPages();
             $pdf->AddPage();
             
@@ -169,7 +169,7 @@ class RegimeController extends BaseController
             // Sous-titre
             $pdf->SetFont('Arial', 'I', 11);
             $pdf->SetTextColor(100, 100, 100);
-            $pdf->Cell(0, 8, 'Généré le ' . date('d/m/Y à H:i'), 0, 1, 'C');
+            $pdf->Cell(0, 8, $this->encode('Généré le ' . date('d/m/Y à H:i')   ), 0, 1, 'C');
             $pdf->Ln(5);
             
             $pdf->ajouterSeparateur();
