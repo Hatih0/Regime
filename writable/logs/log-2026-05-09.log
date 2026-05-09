@@ -1,0 +1,242 @@
+ERROR - 2026-05-09 06:00:25 --> Error connecting to the database: mysqli_sql_exception: Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée in F:\Regime\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 F:\Regime\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'regime', 3306, '', 0)
+#1 F:\Regime\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 F:\Regime\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 F:\Regime\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 F:\Regime\system\Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#5 F:\Regime\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 F:\Regime\app\Controllers\UtilisateurController.php(30): CodeIgniter\BaseModel->first()
+#7 F:\Regime\system\CodeIgniter.php(951): App\Controllers\UtilisateurController->login()
+#8 F:\Regime\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+#9 F:\Regime\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 F:\Regime\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 F:\Regime\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 F:\Regime\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée in F:\Regime\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 F:\Regime\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 F:\Regime\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 F:\Regime\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 F:\Regime\system\Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+#4 F:\Regime\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 F:\Regime\app\Controllers\UtilisateurController.php(30): CodeIgniter\BaseModel->first()
+#6 F:\Regime\system\CodeIgniter.php(951): App\Controllers\UtilisateurController->login()
+#7 F:\Regime\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+#8 F:\Regime\system\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 F:\Regime\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#10 F:\Regime\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 F:\Regime\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 {main}
+CRITICAL - 2026-05-09 06:00:25 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée
+[Method: GET, Route: userAuth]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `utilisateur`
+ LIMIT 1', [], false)
+ 3 SYSTEMPATH\Model.php(295): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\UtilisateurController.php(30): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\UtilisateurController->login()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UtilisateurController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 06:00:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:01:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:01:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:03:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:04:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:04:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:04:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:04:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:04:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:05:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:06:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:06:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 06:14:12 --> ParseError: syntax error, unexpected token "}"
+[Method: GET, Route: user-profile]
+in APPPATH\Models\ObjectifUtilisateurModel.php on line 57.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('F:\\Regime\\app\\Models\\ObjectifUtilisateurModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\ObjectifUtilisateurModel')
+ 3 APPPATH\Controllers\UtilisateurController.php(19): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\ObjectifUtilisateurModel')
+ 4 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\UtilisateurController->__construct()
+ 5 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2026-05-09 06:14:17 --> ParseError: syntax error, unexpected token "}"
+[Method: GET, Route: user-profile]
+in APPPATH\Models\ObjectifUtilisateurModel.php on line 57.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile('F:\\Regime\\app\\Models\\ObjectifUtilisateurModel.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\ObjectifUtilisateurModel')
+ 3 APPPATH\Controllers\UtilisateurController.php(19): CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\ObjectifUtilisateurModel')
+ 4 SYSTEMPATH\CodeIgniter.php(921): App\Controllers\UtilisateurController->__construct()
+ 5 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 6 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 06:14:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:22:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:24:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 06:24:57 --> ErrorException: Undefined property: App\Controllers\RegimeController::$objectifUserModel
+[Method: POST, Route: calcul-regime]
+in APPPATH\Controllers\RegimeController.php on line 85.
+ 1 APPPATH\Controllers\RegimeController.php(85): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: App\\Controllers\\RegimeController::$objectifUserModel', 'F:\\Regime\\app\\Controllers\\RegimeController.php', 85)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RegimeController->calculRegime()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegimeController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 06:25:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 06:56:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 06:56:32 --> TypeError: App\Models\CombinaisonModel::get_scores_combinaison(): Return value must be of type float, array returned
+[Method: POST, Route: calcul-regime]
+in APPPATH\Models\CombinaisonModel.php on line 61.
+ 1 APPPATH\Models\CombinaisonModel.php(73): App\Models\CombinaisonModel->get_scores_combinaison([...], [...], -10.0, 0.2, 0.1, 0.7)
+ 2 APPPATH\Controllers\RegimeController.php(97): App\Models\CombinaisonModel->get_meilleure_combinaison([...], -10.0, 0.2, 0.1, 0.7)
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RegimeController->calculRegime()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegimeController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 06:57:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 07:02:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 07:02:03 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\ObjectifUtilisateurModel::getPoidsActuel
+[Method: POST, Route: calcul-regime]
+in SYSTEMPATH\Model.php on line 761.
+ 1 APPPATH\Controllers\RegimeController.php(85): CodeIgniter\Model->__call('getPoidsActuel', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RegimeController->calculRegime()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegimeController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 07:03:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 07:03:34 --> ErrorException: Undefined variable $poids_actuel
+[Method: POST, Route: calcul-regime]
+in APPPATH\Controllers\RegimeController.php on line 104.
+ 1 APPPATH\Controllers\RegimeController.php(104): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $poids_actuel', 'F:\\Regime\\app\\Controllers\\RegimeController.php', 104)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RegimeController->calculRegime()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegimeController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 07:04:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 07:04:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 07:31:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:20:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:22:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:22:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:22:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:22:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:22:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:41:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:41:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:41:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:42:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 08:42:32 --> Error: Class "App\Models\CombinaisonModel" not found
+[Method: POST, Route: calcul-regime]
+in APPPATH\Controllers\RegimeController.php on line 106.
+ 1 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RegimeController->calculRegime()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegimeController))
+ 3 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 6 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 08:43:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:45:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:51:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:51:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:51:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 08:52:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:00:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 11:00:10 --> TypeError: App\Models\ObjectifUtilisateurModel::getPoidsObjectif(): Argument #1 ($id_utilisateur) must be of type int, null given, called in F:\Regime\app\Controllers\RegimeController.php on line 88
+[Method: POST, Route: calcul-regime]
+in APPPATH\Models\ObjectifUtilisateurModel.php on line 51.
+ 1 APPPATH\Controllers\RegimeController.php(88): App\Models\ObjectifUtilisateurModel->getPoidsObjectif(null)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RegimeController->calculRegime()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegimeController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 11:00:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 11:00:17 --> TypeError: App\Models\ObjectifUtilisateurModel::getPoidsObjectif(): Argument #1 ($id_utilisateur) must be of type int, null given, called in F:\Regime\app\Controllers\RegimeController.php on line 88
+[Method: POST, Route: calcul-regime]
+in APPPATH\Models\ObjectifUtilisateurModel.php on line 51.
+ 1 APPPATH\Controllers\RegimeController.php(88): App\Models\ObjectifUtilisateurModel->getPoidsObjectif(null)
+ 2 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RegimeController->calculRegime()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RegimeController))
+ 4 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2026-05-09 11:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:01:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:01:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:19:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:31:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:32:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 11:32:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:05:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:05:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:05:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:05:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-05-09 16:05:32 --> [PDF Export] Erreur : require_once(F:\Regime\app\ThirdParty/fpdf/fpdf.php): Failed to open stream: No such file or directory
+DEBUG - 2026-05-09 16:05:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:09:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-05-09 16:09:45 --> [PDF Export] Erreur : require_once(F:\Regime\app\ThirdParty/fpdf/fpdf.php): Failed to open stream: No such file or directory
+DEBUG - 2026-05-09 16:09:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:10:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-05-09 16:10:37 --> [PDF Export] Erreur : require_once(F:\Regime\app\ThirdParty/fpdf/fpdf.php): Failed to open stream: No such file or directory
+DEBUG - 2026-05-09 16:10:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:11:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-05-09 16:11:32 --> [PDF Export] Erreur : require_once(F:\Regime\app\ThirdParty/fpdf/fpdf.php): Failed to open stream: No such file or directory
+DEBUG - 2026-05-09 16:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 16:19:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-05-09 16:19:29 --> [PDF Export] Erreur : require_once(F:\Regime\app\ThirdParty/fpdf/fpdf.php): Failed to open stream: No such file or directory
+DEBUG - 2026-05-09 16:19:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 17:08:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 17:15:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-05-09 17:15:15 --> [PDF Export] Erreur : require_once(F:\Regime\app\ThirdParty/fpdf/fpdf.php): Failed to open stream: No such file or directory
+DEBUG - 2026-05-09 17:15:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 17:44:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2026-05-09 17:44:05 --> ErrorException: Cannot declare class App\Libraries\FPDF because the name is already in use
+[Method: POST, Route: export/pdf]
+in APPPATH\Libraries\PDFModel.php on line 38.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+DEBUG - 2026-05-09 17:49:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:13:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:13:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:13:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-05-09 18:13:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
