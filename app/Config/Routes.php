@@ -52,15 +52,19 @@ $routes->group('', ['filter' => 'adminauth'], static function ($routes) {
 $routes->get('/signin', 'UtilisateurController::signin');
 $routes->get('/login', 'UtilisateurController::login');
 
-$routes->post('/create-user', 'UtilisateurController::createUser');
+$routes->post('create-user', 'UtilisateurController::createUser');
 
-$routes->get('/choix-objectif', 'ObjectifUtilisateurController::choixObjectif');
+$routes->get('choix-objectif', 'ObjectifUtilisateurController::choixObjectif');
 
-$routes->post('/create-objectif', 'ObjectifUtilisateurController::createObjectifUser');
+$routes->post('create-objectif', 'ObjectifUtilisateurController::createObjectifUser');
 
-$routes->get('/user-profile', 'UtilisateurController::getUserProfile');
+$routes->get('user-profile', 'UtilisateurController::getUserProfile');
 
-$routes->post('/update-utilisateur', 'UtilisateurController::updateUtilisateur');
-$routes->post('/update-sante', 'UtilisateurController::updateSante');
-$routes->post('/update-objectif', 'UtilisateurController::updateObjectif');
+$routes->post('update-utilisateur', 'UtilisateurController::updateUtilisateur');
+$routes->post('update-sante', 'UtilisateurController::updateSante');
+$routes->post('update-objectif', 'UtilisateurController::updateObjectif');
 
+$routes->get('choix-regime', 'RegimeController::choixRegime');
+$routes->post('calcul-regime', 'RegimeController::calculRegime');
+
+$routes->post('export/pdf', 'RegimeController::pdfExport');
