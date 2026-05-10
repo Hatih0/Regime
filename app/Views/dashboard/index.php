@@ -12,7 +12,7 @@
                     <h1 class="hero-title fw-bold mb-3">Vue d'ensemble du projet et indicateurs alimentés par la base de données.</h1>
                     <p class="hero-copy mb-4">Les graphiques ci-dessous se chargent en AJAX pour suivre l'activité des utilisateurs et la popularité des régimes en temps réel.</p>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="<?= site_url('/only-admin') ?>" class="btn btn-primary btn-lg"><i class="bi bi-shield-check me-2"></i>Accès admin</a>
+                        <a href="<?= site_url('/adminAuth') ?>" class="btn btn-primary btn-lg"><i class="bi bi-shield-check me-2"></i>Accès admin</a>
                         <a href="<?= site_url('/login') ?>" class="btn btn-outline-dark btn-lg"><i class="bi bi-person-circle me-2"></i>Espace utilisateur</a>
                     </div>
                 </div>

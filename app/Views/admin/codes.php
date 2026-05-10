@@ -17,7 +17,7 @@
             <div class="col-lg-8">
                 <div class="section-card mb-4">
                     <h2 class="h5 fw-bold mb-3">Générer des codes</h2>
-                    <form method="post" action="/admin/codes/generate" class="split-grid two">
+                    <form method="post" action="<?= site_url('/admin/codes/generate') ?>" class="split-grid two">
                         <div>
                             <label>Nombre de codes</label>
                             <input type="number" name="count" value="5" required class="form-control">
@@ -54,8 +54,8 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mt-4">
-                    <a href="/only-admin" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour tableau de bord</a>
-                    <a href="/admin/logout" class="btn btn-outline-dark"><i class="bi bi-box-arrow-right me-2"></i>Deconnexion</a>
+                    <a href="<?= site_url('/only-admin') ?>" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour tableau de bord</a>
+                    <a href="<?= site_url('/admin/logout') ?>" class="btn btn-outline-dark"><i class="bi bi-box-arrow-right me-2"></i>Deconnexion</a>
                 </div>
             </div>
         </div>

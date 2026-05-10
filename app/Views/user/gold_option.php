@@ -80,13 +80,13 @@
                                     </div>
 
                                     <?php if ($solde >= 99.99): ?>
-                                        <form method="post" action="/buy-gold" class="d-flex justify-content-end">
+                                        <form method="post" action="<?= site_url('/buy-gold') ?>" class="d-flex justify-content-end">
                                             <button type="submit" class="btn btn-primary"><i class="bi bi-gem me-2"></i>Acheter Gold</button>
                                         </form>
                                     <?php else: ?>
                                         <div class="status-box warning mb-3"><i class="bi bi-exclamation-circle me-2"></i>Solde insuffisant. Il vous manque <?= number_format(99.99 - $solde, 2) ?> €.</div>
                                         <div class="d-flex justify-content-end">
-                                            <a href="/wallet" class="btn btn-outline-primary"><i class="bi bi-wallet2 me-2"></i>Recharger le portefeuille</a>
+                                            <a href="<?= site_url('/wallet') ?>" class="btn btn-outline-primary"><i class="bi bi-wallet2 me-2"></i>Recharger le portefeuille</a>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <a href="/user-profile" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour au profil</a>
+                        <a href="<?= site_url('/user-profile') ?>" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour au profil</a>
                         <span class="small-muted">Option premium unique a vie</span>
                     </div>
                 </div>

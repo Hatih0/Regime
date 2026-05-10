@@ -56,7 +56,7 @@
                             </div>
                         <?php endif; ?>
 
-                        <form action="/export/pdf" method="POST" class="d-flex justify-content-end">
+                        <form action="<?= site_url('/export/pdf') ?>" method="POST" class="d-flex justify-content-end">
                             <?= csrf_field() ?>
                             <input type="hidden" name="data" value="<?= base64_encode(serialize($resultat)) ?>">
                             <button type="submit" class="btn btn-primary"><i class="bi bi-filetype-pdf me-2"></i>Exporter en PDF</button>

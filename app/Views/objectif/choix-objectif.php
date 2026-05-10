@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="col-lg-7">
-                            <form action="/create-objectif" method="post" class="section-card">
+                            <form action="<?= site_url('/create-objectif') ?>" method="post" class="section-card">
                                 <div>
                                     <label class="d-block mb-2">Sélectionnez votre objectif</label>
                                     <div class="d-grid gap-2">

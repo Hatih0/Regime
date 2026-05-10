@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="col-md-7">
-                            <form method="post" action="/wallet/recharge" class="section-card h-100">
+                            <form method="post" action="<?= site_url('/wallet/recharge') ?>" class="section-card h-100">
                                 <div>
                                     <label for="code">Code</label>
                                     <input type="text" id="code" name="code" class="form-control" required>
@@ -48,8 +48,8 @@
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <a href="/user-profile" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour au profil</a>
-                        <a href="/gold" class="btn btn-primary"><i class="bi bi-gem me-2"></i>Decouvrir Gold</a>
+                        <a href="<?= site_url('/user-profile') ?>" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour au profil</a>
+                        <a href="<?= site_url('/gold') ?>" class="btn btn-primary"><i class="bi bi-gem me-2"></i>Decouvrir Gold</a>
                     </div>
                 </div>
             </div>

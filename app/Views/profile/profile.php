@@ -64,8 +64,8 @@
                     </div>
 
                     <div class="d-grid gap-2 mt-4">
-                        <a href="/wallet" class="btn btn-outline-primary"><i class="bi bi-wallet2 me-2"></i>Mon portefeuille</a>
-                        <a href="/gold" class="btn btn-primary"><i class="bi bi-gem me-2"></i>Option Gold</a>
+                        <a href="<?= site_url('/wallet') ?>" class="btn btn-outline-primary"><i class="bi bi-wallet2 me-2"></i>Mon portefeuille</a>
+                        <a href="<?= site_url('/gold') ?>" class="btn btn-primary"><i class="bi bi-gem me-2"></i>Option Gold</a>
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@
                 <div class="split-grid two">
                     <div class="section-card">
                         <h2 class="h5 fw-bold mb-3">Nouvelle mesure</h2>
-                        <form action="/update-sante" method="post">
+                        <form action="<?= site_url('/update-sante') ?>" method="post">
                             <div>
                                 <label>Poids (kg)</label>
                                 <input type="number" name="poids" step="0.1" class="form-control" required>
@@ -146,7 +146,7 @@
 
                     <div class="section-card">
                         <h2 class="h5 fw-bold mb-3">Nouvel objectif</h2>
-                        <form action="/update-objectif" method="post">
+                        <form action="<?= site_url('/update-objectif') ?>" method="post">
                             <div>
                                 <label class="d-block mb-2">Objectif</label>
                                 <div class="d-grid gap-2">
@@ -175,7 +175,7 @@
 
                 <div class="section-card mt-4">
                     <h2 class="h5 fw-bold mb-3">Informations personnelles</h2>
-                    <form action="/update-utilisateur" method="post" class="split-grid two">
+                    <form action="<?= site_url('/update-utilisateur') ?>" method="post" class="split-grid two">
                         <div>
                             <label>Nom</label>
                             <input type="text" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" class="form-control" required>

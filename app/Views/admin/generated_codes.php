@@ -31,8 +31,8 @@
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <a href="/admin/codes" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour</a>
-                        <a href="/only-admin" class="btn btn-primary"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+                        <a href="<?= site_url('/admin/codes') ?>" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour</a>
+                        <a href="<?= site_url('/only-admin') ?>" class="btn btn-primary"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
                     </div>
                 </div>
             </div>

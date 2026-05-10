@@ -51,6 +51,7 @@
 							'dashboard' => ['label' => 'Dashboard', 'icon' => 'speedometer2'],
 						];
 						$adminLinks = [
+							'/' => ['label' => 'Accueil', 'icon' => 'house-door'],
 							'only-admin' => ['label' => 'Tableau de bord', 'icon' => 'speedometer2'],
 							'regimes' => ['label' => 'Regimes', 'icon' => 'clipboard2-pulse'],
 							'exercices' => ['label' => 'Exercices', 'icon' => 'bicycle'],

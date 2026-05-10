@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="col-lg-7">
-                    <form action="/create-user" method="post" class="section-card">
+                    <form action="<?= site_url('/create-user') ?>" method="post" class="section-card">
                         <div id="etape1" class="split-grid two">
                             <div class="col-12">
                                 <h2 class="h4 fw-bold mb-3">Informations personnelles</h2>
