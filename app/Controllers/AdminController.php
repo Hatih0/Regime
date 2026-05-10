@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\AdminModel;
+use App\Models\CodeRechargementModel;
 
 class AdminController extends BaseController
 {
@@ -10,6 +11,7 @@ class AdminController extends BaseController
     public function __construct()
     {
         $this->adminModel = new AdminModel();
+        $this->codeModel = new CodeRechargementModel();
     }
 
     public function login()
@@ -56,5 +58,31 @@ class AdminController extends BaseController
         }
 
         return view('admin/only');
+    }
+
+    public function codesList()
+    {
+        if (!session()->get('is_logged_in')) {
+            return redirect()->to('/adminAuth')->with('error', 'Vous devez être connecté.');
+        }
+
+        $codes = $this->codeModel->findAll();
+        return view('admin/codes', ['codes' => $codes]);
+    }
+
+    public function generateCodes()
+    {
+        if (!session()->get('is_logged_in')) {
+            return redirect()->to('/adminAuth')->with('error', 'Vous devez être connecté.');
+        }
+
+        $count = (int) $this->request->getPost('count');
+        $montant = (float) $this->request->getPost('montant');
+        if ($count <= 0 || $montant <= 0) {
+            return redirect()->back()->with('error', 'Données invalides.');
+        }
+
+        $codes = $this->codeModel->generateCodes($count, $montant);
+        return view('admin/generated_codes', ['codes' => $codes]);
     }
 }

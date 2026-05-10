@@ -5,6 +5,9 @@ namespace App\Controllers;
 use App\Models\UtilisateurModel;
 use App\Models\SanteUtilisateurModel;
 use App\Models\ObjectifUtilisateurModel;
+use App\Models\PortefeuilleModel;
+use App\Models\CodeRechargementModel;
+use App\Models\RechargementModel;
 
 class UtilisateurController extends BaseController
 {
@@ -17,6 +20,60 @@ class UtilisateurController extends BaseController
         $this->utilisateurModel = new UtilisateurModel();
         $this->santeUtilisateurModel = new SanteUtilisateurModel();
         $this->objectifUtilisateurModel = new ObjectifUtilisateurModel();
+        $this->portefeuilleModel = new PortefeuilleModel();
+        $this->codeModel = new CodeRechargementModel();
+        $this->rechargementModel = new RechargementModel();
+    }
+
+    public function wallet()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $userId = session()->get('user_id');
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (! $port) {
+            $this->portefeuilleModel->createForUser($userId);
+            $port = $this->portefeuilleModel->getByUser($userId);
+        }
+
+        return view('wallet/wallet', ['portefeuille' => $port]);
+    }
+
+    public function rechargeWithCode()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $codeText = trim((string) $this->request->getPost('code'));
+        if (empty($codeText)) {
+            return redirect()->back()->with('error', 'Code requis.');
+        }
+
+        $code = $this->codeModel->findByCode($codeText);
+        if (! $code || $code['status'] !== 'valide') {
+            return redirect()->back()->with('error', 'Code invalide ou déjà utilisé.');
+        }
+
+        $userId = session()->get('user_id');
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (! $port) {
+            $this->portefeuilleModel->createForUser($userId);
+            $port = $this->portefeuilleModel->getByUser($userId);
+        }
+
+        // add funds
+        $this->portefeuilleModel->addFunds($userId, (float) $code['montant']);
+
+        // mark code used
+        $this->codeModel->markUsed((int) $code['id']);
+
+        // create rechargement record
+        $this->rechargementModel->createRecord((int) $port['id'], (int) $code['id']);
+
+        return redirect()->to('/wallet')->with('success', 'Rechargement effectué. +'.$code['montant'].'€');
     }
 
     public function index()

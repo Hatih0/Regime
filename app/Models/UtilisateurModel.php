@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use App\Models\PortefeuilleModel;
 
 class UtilisateurModel extends Model
 {
@@ -45,7 +46,17 @@ class UtilisateurModel extends Model
             'date_inscription' => date('Y-m-d H:i:s'),
             'gold' => 0
         ];
-        return $this->insert($data);
+        $inserted = $this->insert($data, true);
+        if (!$inserted) {
+            return 0;
+        }
+        $id = $this->getInsertID();
+        
+        // auto-create wallet for user
+        $portModel = new PortefeuilleModel();
+        $portModel->insert(['id_utilisateur' => $id, 'solde' => 0]);
+        
+        return $id;
     }
     
     public function getInfoUser(int $id): ?array

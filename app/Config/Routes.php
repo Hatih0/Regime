@@ -47,6 +47,9 @@ $routes->group('', ['filter' => 'adminauth'], static function ($routes) {
     $routes->post('/exercices/(:num)/edit', 'ExerciceController::update/$1');
     $routes->get('/exercices/(:num)/delete', 'ExerciceController::delete/$1');
 
+    $routes->get('/admin/codes', 'AdminController::codesList');
+    $routes->post('/admin/codes/generate', 'AdminController::generateCodes');
+
 });
 
 $routes->get('/signin', 'UtilisateurController::signin');
@@ -63,6 +66,9 @@ $routes->get('user-profile', 'UtilisateurController::getUserProfile');
 $routes->post('update-utilisateur', 'UtilisateurController::updateUtilisateur');
 $routes->post('update-sante', 'UtilisateurController::updateSante');
 $routes->post('update-objectif', 'UtilisateurController::updateObjectif');
+
+$routes->get('/wallet', 'UtilisateurController::wallet');
+$routes->post('/wallet/recharge', 'UtilisateurController::rechargeWithCode');
 
 $routes->get('choix-regime', 'RegimeController::choixRegime');
 $routes->post('calcul-regime', 'RegimeController::calculRegime');

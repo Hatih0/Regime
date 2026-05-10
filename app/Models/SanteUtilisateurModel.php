@@ -50,8 +50,14 @@ class SanteUtilisateurModel extends Model
     public function calculIMC(int $id_utilisateur): ?float
     {
         $data = $this->where('id_utilisateur', $id_utilisateur)->orderBy('date_mesure', 'DESC')->first();
-        $poids = $data['poids'];
-        $taille = $data['taille'] / 100;
-        return (float) ( $poids / ($taille * $taille) ) ;
+        if (!$data || !isset($data['poids']) || !isset($data['taille'])) {
+            return null;
+        }
+        $poids = (float) $data['poids'];
+        $taille = ((float) $data['taille']) / 100;
+        if ($taille <= 0) {
+            return null;
+        }
+        return (float) ($poids / ($taille * $taille));
     }
 }
