@@ -29,6 +29,11 @@
     <p id="dateinscription">Date d'inscription: <?= $dateInsc ?></p>
     <p><?= $gold_inf ?></p>
 
+    <div style="margin: 20px 0; padding: 10px; background: #f9f9f9; border: 1px solid #ddd;">
+        <a href="/wallet" style="margin-right: 15px; padding: 10px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">💰 Mon portefeuille</a>
+        <a href="/gold" style="padding: 10px 15px; background: #ffc107; color: black; text-decoration: none; border-radius: 4px;">⭐ Option Gold</a>
+    </div>
+
     <div class="section">
         <h2>Mes informations de santé actuelles</h2>
         <p>Taille actuelle : <?= htmlspecialchars($santeInfos[0]['taille']) ?> cm</p>

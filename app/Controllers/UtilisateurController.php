@@ -277,4 +277,58 @@ class UtilisateurController extends BaseController
         return redirect()->back()->with('error', 'Erreur lors de l\'enregistrement.');
     }
 
+    public function goldPage()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $userId = session()->get('user_id');
+        $user = $this->utilisateurModel->find($userId);
+        $goldPrice = 99.99; // Prix unique de l'option Gold
+        
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (!$port) {
+            $this->portefeuilleModel->createForUser($userId);
+            $port = $this->portefeuilleModel->getByUser($userId);
+        }
+
+        return view('user/gold_option', [
+            'user' => $user,
+            'goldPrice' => $goldPrice,
+            'solde' => (float) $port['solde']
+        ]);
+    }
+
+    public function buyGold()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $userId = session()->get('user_id');
+        $user = $this->utilisateurModel->find($userId);
+        $goldPrice = 99.99;
+
+        // Vérifier si déjà Gold
+        if ($user && (bool) $user['gold']) {
+            return redirect()->to('/user-profile')->with('error', 'Vous avez déjà l\'option Gold.');
+        }
+
+        // Vérifier solde
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (!$port || (float) $port['solde'] < $goldPrice) {
+            return redirect()->back()->with('error', 'Solde insuffisant. Il vous manque ' . number_format($goldPrice - ($port['solde'] ?? 0), 2) . '€');
+        }
+
+        // Déduire du portefeuille
+        $newSolde = (float) $port['solde'] - $goldPrice;
+        $this->portefeuilleModel->update($port['id'], ['solde' => $newSolde]);
+
+        // Activer Gold pour l'utilisateur
+        $this->utilisateurModel->update($userId, ['gold' => true]);
+
+        return redirect()->to('/user-profile')->with('success', 'Option Gold activée ! Vous bénéficiez maintenant de 15% de remise sur tous les régimes.');
+    }
+
 }

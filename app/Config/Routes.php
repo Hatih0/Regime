@@ -70,6 +70,9 @@ $routes->post('update-objectif', 'UtilisateurController::updateObjectif');
 $routes->get('/wallet', 'UtilisateurController::wallet');
 $routes->post('/wallet/recharge', 'UtilisateurController::rechargeWithCode');
 
+$routes->get('/gold', 'UtilisateurController::goldPage');
+$routes->post('/buy-gold', 'UtilisateurController::buyGold');
+
 $routes->get('choix-regime', 'RegimeController::choixRegime');
 $routes->post('calcul-regime', 'RegimeController::calculRegime');
 

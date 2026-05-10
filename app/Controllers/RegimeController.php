@@ -103,6 +103,7 @@ class RegimeController extends BaseController
 
         $activiteModel = new ActiviteModel();
         $combModel     = new CombinaisonModel();
+        $utilisateurModel = new UtilisateurModel();
 
         $allRegimes   = $this->regimeModel->getAllRegimes();
         $allActivites = $activiteModel->getAll();
@@ -112,13 +113,24 @@ class RegimeController extends BaseController
         $combinaisons         = $combModel->get_combinaisons_filtres($allRegimes, $allActivites);
         $meilleurecombinaison = $combModel->get_meilleure_combinaison($combinaisons, $variation_objectif, $w1, $w2, $w3);
 
+        $prix_total = $meilleurecombinaison['prix_total'];
+        
+        // Appliquer remise Gold de 15% si applicable
+        $user = $utilisateurModel->find($id_utilisateur);
+        $remise_appliquee = false;
+        if ($user && (bool) $user['gold']) {
+            $prix_total = $prix_total * 0.85;  // 15% de remise
+            $remise_appliquee = true;
+        }
+
         $resultat = [
             'choix'              => $choix,
             'variation_objectif' => $variation_objectif,   // signée, utile en vue
             'meilleure'          => $meilleurecombinaison['combinaison'],
             'nb_jours'           => $meilleurecombinaison['nb_jours'],
-            'prix_total'         => $meilleurecombinaison['prix_total'],
+            'prix_total'         => $prix_total,
             'w'                  => [$w1, $w2, $w3],
+            'remise_gold'        => $remise_appliquee,
         ];
 
         return view('regime/resultat-regime', ['resultat' => $resultat]);
