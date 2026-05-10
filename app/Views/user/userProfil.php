@@ -1,18 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h1> user Profil </h1>
+<?= view('header/header', [
+    'pageTitle' => 'Profil utilisateur',
+    'pageSubtitle' => 'Synthese rapide du compte',
+]) ?>
 
-    <p>Nom: <?php echo $user['nom']; ?> </p>
-    <p>Date d'inscription: <?php echo $user['date_inscription']; ?> </p>
-    <p>Genre: <?php echo $user['genre']; ?> </p>
-    <p>Gold: <?php echo $user['gold'] ? 'Oui' : 'Non'; ?> </p>
+<section class="page-shell">
+    <div class="container">
+        <?php if (!isset($user) || !is_array($user)) { $user = []; } ?>
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="section-card">
+                    <span class="section-tag mb-3"><i class="bi bi-person-badge"></i> Profil</span>
+                    <h1 class="h3 fw-bold mb-4">Profil utilisateur</h1>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="metric-box h-100">
+                                <div class="metric-label">Nom</div>
+                                <div class="metric-value fs-5"><?= htmlspecialchars($user['nom']) ?></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="metric-box h-100">
+                                <div class="metric-label">Date d'inscription</div>
+                                <div class="metric-value fs-5"><?= htmlspecialchars($user['date_inscription']) ?></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="metric-box h-100">
+                                <div class="metric-label">Genre</div>
+                                <div class="metric-value fs-5"><?= htmlspecialchars($user['genre']) ?></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="metric-box h-100">
+                                <div class="metric-label">Gold</div>
+                                <div class="metric-value fs-5"><?= !empty($user['gold']) ? 'Oui' : 'Non' ?></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-</body>
-</html>
+<?= view('header/footer') ?>
