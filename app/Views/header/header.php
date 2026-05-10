@@ -45,14 +45,12 @@
 							'adminAuth' => ['label' => 'Admin', 'icon' => 'shield-lock'],
 						];
 						$userLinks = [
-							'/' => ['label' => 'Accueil', 'icon' => 'house-door'],
 							'wallet' => ['label' => 'Portefeuille', 'icon' => 'wallet2'],
 							'gold' => ['label' => 'Gold', 'icon' => 'gem'],
 							'choix-regime' => ['label' => 'Regime', 'icon' => 'clipboard2-pulse'],
 							'dashboard' => ['label' => 'Dashboard', 'icon' => 'speedometer2'],
 						];
 						$adminLinks = [
-							'/' => ['label' => 'Accueil', 'icon' => 'house-door'],
 							'only-admin' => ['label' => 'Tableau de bord', 'icon' => 'speedometer2'],
 							'regimes' => ['label' => 'Regimes', 'icon' => 'clipboard2-pulse'],
 							'exercices' => ['label' => 'Exercices', 'icon' => 'bicycle'],
