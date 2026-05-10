@@ -158,3 +158,6 @@ CREATE TABLE achat_regime (
     REFERENCES regime(id)
     ON DELETE RESTRICT
 );
+
+ALTER TABLE utilisateur ADD COLUMN email VARCHAR(255) UNIQUE;
+ALTER TABLE utilisateur_objectif ADD COLUMN poids DECIMAL(5,2);

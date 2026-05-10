@@ -1,0 +1,12 @@
+{
+  "name": "regime-project",
+  "version": "1.0.0",
+  "description": "Assets build for Regime project",
+  "scripts": {
+    "build:css": "sass public/assets/scss/style.scss public/assets/css/style.css --no-source-map --style=compressed",
+    "watch:css": "sass --watch public/assets/scss/style.scss:public/assets/css/style.css"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}

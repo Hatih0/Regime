@@ -2,3 +2,10 @@
 vendor/
 debugbar
 ci_session
+
+node_modules/
+dist/
+*.log
+.env
+.DS_Store
+.idea/
