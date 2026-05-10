@@ -7,6 +7,7 @@ use App\Models\CodeRechargementModel;
 class AdminController extends BaseController
 {
     private AdminModel $adminModel;
+    private CodeRechargementModel $codeModel;
 
     public function __construct()
     {

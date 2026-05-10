@@ -3,9 +3,10 @@
     'pageSubtitle' => 'Acces front office',
 ]) ?>
 
-<section class="page-shell">
-    <div class="container">
-        <div class="auth-card p-4 p-lg-5">
+<section class="page-shell auth-fullscreen">
+    <div class="container-fluid">
+        <div class="container-xxl">
+        <div class="auth-card auth-card-wide p-4 p-lg-5">
             <div class="row g-4 align-items-center">
                 <div class="col-lg-5">
                     <span class="section-tag mb-3"><i class="bi bi-box-arrow-in-right"></i> Connexion</span>
@@ -35,11 +36,11 @@
                         <div class="row g-3">
                             <div class="col-12">
                                 <label for="nom">Nom</label>
-                                <input type="text" id="nom" name="nom" class="form-control" value="<?= esc((string) ($firstUser['nom'] ?? 'user')) ?>" required>
+                                <input type="text" id="nom" name="nom" class="form-control" value="user" required>
                             </div>
                             <div class="col-12">
                                 <label for="password">Mot de passe</label>
-                                <input type="password" id="password" name="password" class="form-control" value="<?= esc((string) ($firstUser['mot_de_passe'] ?? 'user123')) ?>" required>
+                                <input type="password" id="password" name="password" class="form-control" value="user123" required>
                             </div>
                             <div class="col-12 d-flex flex-wrap gap-2 justify-content-end">
                                 <a href="<?= site_url('/signin') ?>" class="btn btn-outline-secondary"><i class="bi bi-person-plus me-2"></i>Creer un compte</a>
@@ -49,6 +50,7 @@
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </section>

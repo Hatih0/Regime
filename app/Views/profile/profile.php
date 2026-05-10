@@ -26,8 +26,9 @@
 ]) ?>
 
 <section class="page-shell">
-    <div class="container">
-        <div class="row g-4">
+    <div class="container-fluid">
+        <div class="container-lg">
+            <div class="row g-4">
             <div class="col-lg-4">
                 <div class="glass-card h-100">
                     <div class="d-flex align-items-start justify-content-between mb-3">
@@ -205,6 +206,7 @@
                         </div>
                     </form>
                 </div>
+            </div>
             </div>
         </div>
     </div>

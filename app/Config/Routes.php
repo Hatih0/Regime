@@ -12,6 +12,9 @@ $routes->get('/userAuth', 'UtilisateurController::login');
 $routes->post('/check-user', 'UtilisateurController::checkUser');
 
 $routes->get('/dashboard', 'DashboardController::index');
+$routes->get('/dashboard/stats/active-users', 'DashboardController::activeUsersStats');
+$routes->get('/dashboard/stats/popular-regimes', 'DashboardController::popularRegimesStats');
+$routes->get('/dashboard/stats/summary', 'DashboardController::summaryStats');
 
 // $routes->get('/userProfil', 'UtilisateurController::profil');
 $routes->get('/user-profile', 'UtilisateurController::getUserProfile');

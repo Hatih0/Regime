@@ -14,6 +14,9 @@ class UtilisateurController extends BaseController
     private UtilisateurModel $utilisateurModel; 
     private SanteUtilisateurModel $santeUtilisateurModel; 
     private ObjectifUtilisateurModel $objectifUtilisateurModel; 
+    private PortefeuilleModel $portefeuilleModel;
+    private CodeRechargementModel $codeModel;
+    private RechargementModel $rechargementModel;
     
     public function __construct()
     {

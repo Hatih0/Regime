@@ -3,9 +3,10 @@
     'pageSubtitle' => 'Gestion rapide du back office',
 ]) ?>
 
-<section class="page-shell">
-    <div class="container">
-        <div class="auth-card p-4 p-lg-5">
+<section class="page-shell auth-fullscreen admin-fullscreen">
+    <div class="container-fluid">
+        <div class="container-xxl">
+            <div class="auth-card auth-card-wide admin-fullscreen-card p-4 p-lg-5">
             <div class="row g-4 align-items-center">
                 <div class="col-lg-5">
                     <span class="section-tag mb-3"><i class="bi bi-shield-check"></i> Back office</span>
@@ -44,6 +45,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>

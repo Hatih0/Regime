@@ -34,12 +34,14 @@ body.app-shell {
 }
 
 .app-main {
-    padding: 0 0 4rem;
+    /* Ensure main content sits below the sticky navbar to avoid visual overlap */
+    padding: 6rem 0 4rem;
 }
 
 .app-navbar {
     background: linear-gradient(135deg, rgba(11, 79, 74, 0.98), rgba(15, 118, 110, 0.96));
     box-shadow: 0 12px 30px rgba(10, 28, 36, 0.22);
+    z-index: 1030;
 }
 
 .navbar .nav-link {
@@ -84,7 +86,7 @@ body.app-shell {
 .hero-section {
     position: relative;
     overflow: hidden;
-    padding: 4.5rem 0 3rem;
+    padding: 5.5rem 0 3rem; /* increase top padding so hero content doesn't sit too close to navbar */
 }
 
 .hero-section::before,
@@ -213,6 +215,56 @@ body.app-shell {
 .auth-card {
     max-width: 760px;
     margin: 0 auto;
+}
+
+.auth-card.auth-card-wide {
+    max-width: 1200px;
+}
+
+.admin-fullscreen-card {
+    max-width: 1320px;
+    width: 100%;
+}
+
+/* Ensure the auth-card's internal columns don't visually overlap each other.
+   Make the form card stretch to the column height so it stays beside the hero text
+   instead of drifting above it. */
+.auth-card .row {
+    align-items: stretch;
+}
+
+.auth-card .section-card {
+    height: 100%;
+    margin-top: 0; /* prevent any unexpected negative margins */
+    position: relative;
+    z-index: 1;
+}
+
+/* Make the auth card occupy most of the viewport height on large screens
+   and center its internal row to avoid the right-side form overlapping the hero text. */
+@media (min-width: 992px) {
+    .auth-card {
+        min-height: calc(100vh - 9rem);
+        display: flex;
+        align-items: center;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    /* Override Bootstrap utility align-items-start inside auth-card (Bootstrap uses !important) */
+    .auth-card .row,
+    .auth-card .row.align-items-start {
+        align-items: center !important; /* vertical center the columns */
+    }
+
+    .auth-card .section-card {
+        height: auto; /* allow natural height so it doesn't overflow */
+    }
+
+    .auth-card .col-lg-7 {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .form-control,
@@ -353,6 +405,43 @@ table tbody tr:nth-child(even) {
     padding: 2rem 0 0;
 }
 
+.page-shell.auth-fullscreen {
+    min-height: calc(100vh - 13.25rem);
+    display: flex;
+    align-items: center;
+}
+
+.page-shell.auth-fullscreen .container-fluid,
+.page-shell.auth-fullscreen .container-xxl {
+    width: 100%;
+}
+
+.dashboard-shell {
+    padding-top: 0;
+    padding-bottom: 2rem;
+}
+
+.chart-card {
+    padding: 1.5rem;
+}
+
+.chart-wrap {
+    position: relative;
+    min-height: 360px;
+}
+
+.chart-wrap-sm {
+    min-height: 360px;
+}
+
+.page-shell.admin-fullscreen {
+    min-height: calc(100vh - 13.25rem);
+}
+
+.page-shell.admin-fullscreen .auth-card {
+    min-height: calc(100vh - 13.25rem);
+}
+
 .section-title {
     letter-spacing: -0.02em;
 }
@@ -408,6 +497,16 @@ table tbody tr:nth-child(even) {
         padding-top: 3rem;
     }
 
+    .page-shell.auth-fullscreen {
+        min-height: auto;
+        display: block;
+    }
+
+    .page-shell.admin-fullscreen,
+    .page-shell.admin-fullscreen .auth-card {
+        min-height: auto;
+    }
+
     .metric-grid,
     .split-grid.two {
         grid-template-columns: 1fr;
@@ -427,6 +526,15 @@ table tbody tr:nth-child(even) {
     .table-card {
         padding: 1.1rem;
         border-radius: 1.4rem;
+    }
+
+    .chart-card {
+        padding: 1.1rem;
+    }
+
+    .chart-wrap,
+    .chart-wrap-sm {
+        min-height: 280px;
     }
 
     .hero-title {
