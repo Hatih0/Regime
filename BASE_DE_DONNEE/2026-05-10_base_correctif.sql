@@ -36,11 +36,6 @@ CREATE TABLE objectif (
     nom VARCHAR(100)
 );
 
-INSERT INTO objectif(nom) VALUES
-('Augmenter poids'),
-('Reduire poids'),
-('Atteindre IMC ideal');
-
 CREATE TABLE utilisateur_objectif (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_utilisateur INT NOT NULL,
