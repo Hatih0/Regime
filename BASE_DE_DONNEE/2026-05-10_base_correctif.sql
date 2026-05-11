@@ -64,22 +64,6 @@ CREATE TABLE regime (
     prix DECIMAL(10,2)
 );
 
-CREATE TABLE regime_objectif (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_regime INT NOT NULL,
-    id_objectif INT NOT NULL,
-
-    CONSTRAINT fk_regime_objectif_regime
-    FOREIGN KEY (id_regime)
-    REFERENCES regime(id)
-    ON DELETE CASCADE,
-
-    CONSTRAINT fk_regime_objectif_objectif
-    FOREIGN KEY (id_objectif)
-    REFERENCES objectif(id)
-    ON DELETE CASCADE
-);
-
 CREATE TABLE activite_sportive (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100),
@@ -87,21 +71,6 @@ CREATE TABLE activite_sportive (
     duree INT
 );
 
-CREATE TABLE activite_objectif (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_activite INT NOT NULL,
-    id_objectif INT NOT NULL,
-
-    CONSTRAINT fk_activite_objectif_activite
-    FOREIGN KEY (id_activite)
-    REFERENCES activite_sportive(id)
-    ON DELETE CASCADE,
-
-    CONSTRAINT fk_activite_objectif_objectif
-    FOREIGN KEY (id_objectif)
-    REFERENCES objectif(id)
-    ON DELETE CASCADE
-);
 
 CREATE TABLE portefeuille (
     id INT AUTO_INCREMENT PRIMARY KEY,
