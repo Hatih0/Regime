@@ -1,8 +1,0 @@
-maintenant dans le navbar 
-si ni user ni admin connecté : afficher les liens de connexion et d'inscription et lien 
-vers la connexion d admin
-si user connecté : afficher le lien de deconnexion et le nom de l'utilisateur et lien vers son profil et deconnexion ainsi que les liens vers portefeuille et regime 
-option gold et tout
-si admin connecté : afficher le lien de deconnexion et le nom de l'administrateur et lien vers son profil et deconnexion ainsi que les liens vers la gestion des utilisateurs et des regimes et tout
-dans dashboard on veut des graphes pour les utilisateurs actifs par jour et les regimes les plus populaires et tout avec les données de la base de données
-donc on utilise ajax pour récupérer les données et les afficher dans des graphes avec une librairie comme Chart.js
