@@ -12,6 +12,9 @@ $routes->get('/userAuth', 'UtilisateurController::login');
 $routes->post('/check-user', 'UtilisateurController::checkUser');
 
 $routes->get('/dashboard', 'DashboardController::index');
+$routes->get('/dashboard/stats/active-users', 'DashboardController::activeUsersStats');
+$routes->get('/dashboard/stats/popular-regimes', 'DashboardController::popularRegimesStats');
+$routes->get('/dashboard/stats/summary', 'DashboardController::summaryStats');
 
 // $routes->get('/userProfil', 'UtilisateurController::profil');
 $routes->get('/user-profile', 'UtilisateurController::getUserProfile');
@@ -47,6 +50,9 @@ $routes->group('', ['filter' => 'adminauth'], static function ($routes) {
     $routes->post('/exercices/(:num)/edit', 'ExerciceController::update/$1');
     $routes->get('/exercices/(:num)/delete', 'ExerciceController::delete/$1');
 
+    $routes->get('/admin/codes', 'AdminController::codesList');
+    $routes->post('/admin/codes/generate', 'AdminController::generateCodes');
+
 });
 
 $routes->get('/signin', 'UtilisateurController::signin');
@@ -63,6 +69,12 @@ $routes->get('user-profile', 'UtilisateurController::getUserProfile');
 $routes->post('update-utilisateur', 'UtilisateurController::updateUtilisateur');
 $routes->post('update-sante', 'UtilisateurController::updateSante');
 $routes->post('update-objectif', 'UtilisateurController::updateObjectif');
+
+$routes->get('/wallet', 'UtilisateurController::wallet');
+$routes->post('/wallet/recharge', 'UtilisateurController::rechargeWithCode');
+
+$routes->get('/gold', 'UtilisateurController::goldPage');
+$routes->post('/buy-gold', 'UtilisateurController::buyGold');
 
 $routes->get('choix-regime', 'RegimeController::choixRegime');
 $routes->post('calcul-regime', 'RegimeController::calculRegime');

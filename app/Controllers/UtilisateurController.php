@@ -5,18 +5,78 @@ namespace App\Controllers;
 use App\Models\UtilisateurModel;
 use App\Models\SanteUtilisateurModel;
 use App\Models\ObjectifUtilisateurModel;
+use App\Models\PortefeuilleModel;
+use App\Models\CodeRechargementModel;
+use App\Models\RechargementModel;
 
 class UtilisateurController extends BaseController
 {
     private UtilisateurModel $utilisateurModel; 
     private SanteUtilisateurModel $santeUtilisateurModel; 
     private ObjectifUtilisateurModel $objectifUtilisateurModel; 
+    private PortefeuilleModel $portefeuilleModel;
+    private CodeRechargementModel $codeModel;
+    private RechargementModel $rechargementModel;
     
     public function __construct()
     {
         $this->utilisateurModel = new UtilisateurModel();
         $this->santeUtilisateurModel = new SanteUtilisateurModel();
         $this->objectifUtilisateurModel = new ObjectifUtilisateurModel();
+        $this->portefeuilleModel = new PortefeuilleModel();
+        $this->codeModel = new CodeRechargementModel();
+        $this->rechargementModel = new RechargementModel();
+    }
+
+    public function wallet()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $userId = session()->get('user_id');
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (! $port) {
+            $this->portefeuilleModel->createForUser($userId);
+            $port = $this->portefeuilleModel->getByUser($userId);
+        }
+
+        return view('wallet/wallet', ['portefeuille' => $port]);
+    }
+
+    public function rechargeWithCode()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $codeText = trim((string) $this->request->getPost('code'));
+        if (empty($codeText)) {
+            return redirect()->back()->with('error', 'Code requis.');
+        }
+
+        $code = $this->codeModel->findByCode($codeText);
+        if (! $code || $code['status'] !== 'valide') {
+            return redirect()->back()->with('error', 'Code invalide ou déjà utilisé.');
+        }
+
+        $userId = session()->get('user_id');
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (! $port) {
+            $this->portefeuilleModel->createForUser($userId);
+            $port = $this->portefeuilleModel->getByUser($userId);
+        }
+
+        // add funds
+        $this->portefeuilleModel->addFunds($userId, (float) $code['montant']);
+
+        // mark code used
+        $this->codeModel->markUsed((int) $code['id']);
+
+        // create rechargement record
+        $this->rechargementModel->createRecord((int) $port['id'], (int) $code['id']);
+
+        return redirect()->to('/wallet')->with('success', 'Rechargement effectué. +'.$code['montant'].'€');
     }
 
     public function index()
@@ -218,6 +278,60 @@ class UtilisateurController extends BaseController
         }
         
         return redirect()->back()->with('error', 'Erreur lors de l\'enregistrement.');
+    }
+
+    public function goldPage()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $userId = session()->get('user_id');
+        $user = $this->utilisateurModel->find($userId);
+        $goldPrice = 99.99; // Prix unique de l'option Gold
+        
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (!$port) {
+            $this->portefeuilleModel->createForUser($userId);
+            $port = $this->portefeuilleModel->getByUser($userId);
+        }
+
+        return view('user/gold_option', [
+            'user' => $user,
+            'goldPrice' => $goldPrice,
+            'solde' => (float) $port['solde']
+        ]);
+    }
+
+    public function buyGold()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $userId = session()->get('user_id');
+        $user = $this->utilisateurModel->find($userId);
+        $goldPrice = 99.99;
+
+        // Vérifier si déjà Gold
+        if ($user && (bool) $user['gold']) {
+            return redirect()->to('/user-profile')->with('error', 'Vous avez déjà l\'option Gold.');
+        }
+
+        // Vérifier solde
+        $port = $this->portefeuilleModel->getByUser($userId);
+        if (!$port || (float) $port['solde'] < $goldPrice) {
+            return redirect()->back()->with('error', 'Solde insuffisant. Il vous manque ' . number_format($goldPrice - ($port['solde'] ?? 0), 2) . '€');
+        }
+
+        // Déduire du portefeuille
+        $newSolde = (float) $port['solde'] - $goldPrice;
+        $this->portefeuilleModel->update($port['id'], ['solde' => $newSolde]);
+
+        // Activer Gold pour l'utilisateur
+        $this->utilisateurModel->update($userId, ['gold' => true]);
+
+        return redirect()->to('/user-profile')->with('success', 'Option Gold activée ! Vous bénéficiez maintenant de 15% de remise sur tous les régimes.');
     }
 
 }

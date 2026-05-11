@@ -48,7 +48,7 @@ class ObjectifUtilisateurModel extends Model
         return $this->where('id_utilisateur', $id_utilisateur)->orderBy('date_choix', 'DESC')->first();
     }
 
-    public function getPoidsObjectif(int $id_utilisateur): ?float
+    public function getPoidsObjectif(int $id_utilisateur)
     {
         $objectif = $this->getCurrentObjectifUser($id_utilisateur);
         $choix = $objectif['id_objectif'] ?? 0;

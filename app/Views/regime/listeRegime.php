@@ -1,52 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<?= view('header/header', [
+    'pageTitle' => 'Liste des régimes',
+    'pageSubtitle' => 'Gestion des plans alimentaires',
+]) ?>
 
-    <a href="<?= site_url('/only-admin') ?>"><< Dashboard Admin </a>
+<section class="page-shell">
+    <div class="container">
+        <?php if (!isset($regimes) || !is_array($regimes)) { $regimes = []; } ?>
+        <div class="section-card">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+                <div>
+                    <span class="section-tag mb-2"><i class="bi bi-clipboard2-pulse"></i> Régimes</span>
+                    <h1 class="h3 fw-bold mb-0">Liste des régimes</h1>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="<?= site_url('/only-admin') ?>" class="btn btn-outline-secondary"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+                    <a href="<?= site_url('/regimes/showForm') ?>" class="btn btn-primary"><i class="bi bi-plus-circle me-2"></i>Ajouter un régime</a>
+                </div>
+            </div>
 
-    <h1>Liste des régimes</h1>
+            <?php if (empty($regimes)): ?>
+                <div class="status-box warning">Aucun régime trouvé.</div>
+            <?php else: ?>
+                <div class="table-responsive table-card">
+                    <table class="table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Viande</th>
+                                <th>Poisson</th>
+                                <th>Volaille</th>
+                                <th>Variation</th>
+                                <th>Durée</th>
+                                <th>Prix</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($regimes as $regime): ?>
+                                <tr>
+                                    <td class="fw-semibold"><?= esc((string) $regime['nom']) ?></td>
+                                    <td><?= esc((string) $regime['pourcentage_viande']) ?> %</td>
+                                    <td><?= esc((string) $regime['pourcentage_poisson']) ?> %</td>
+                                    <td><?= esc((string) $regime['pourcentage_volaille']) ?> %</td>
+                                    <td><?= esc((string) $regime['variation_poids']) ?></td>
+                                    <td><?= esc((string) $regime['duree_jour']) ?></td>
+                                    <td><?= esc((string) $regime['prix']) ?></td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a href="<?= site_url('/regimes/' . $regime['id']) . '/view' ?>" class="action-chip"><i class="bi bi-pencil me-1"></i>Modifier</a>
+                                            <a href="<?= site_url('/regimes/' . $regime['id']) . '/delete' ?>" class="action-chip"><i class="bi bi-trash me-1"></i>Supprimer</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
 
-    <?php if (empty($regimes)): ?>
-        <p>Aucun régime trouvé.</p>
-    <?php else: ?>
-        <table border="1">
-            <thead>
-                <tr>
-                <th>Nom</th>
-                <th>Pourcentage Viande</th>
-                <th>Pourcentage Poisson</th>
-                <th>Pourcentage Volaille</th>
-                <th>Variation Poids</th>
-                <th>Durée Jour</th>
-                <th>Prix</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($regimes as $regime): ?>
-            <tr>
-                <td><?= esc($regime['nom']) ?></td>
-                <td><?= esc($regime['pourcentage_viande']) ?> %</td>
-                <td><?= esc($regime['pourcentage_poisson']) ?> %</td>
-                <td><?= esc($regime['pourcentage_volaille']) ?> %</td>
-                <td><?= esc($regime['variation_poids']) ?></td>
-                <td><?= esc($regime['duree_jour']) ?></td>
-                <td><?= esc($regime['prix']) ?></td>
-                <td>
-                    <a href="<?= site_url('/regimes/' . $regime['id']) .'/view' ?>">Modifier</a>
-                    <a href="<?= site_url('/regimes/' . $regime['id']) . '/delete' ?>"> Supprimer </a>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <?php endif; ?>
-
-    <button><a href="<?= site_url('/regimes/showForm') ?>">Ajouter un régime</a></button>
-
-</body>
-</html>
+<?= view('header/footer') ?>

@@ -1,43 +1,42 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Formulaire exercice</title>
-</head>
-<body>
+<?= view('header/header', [
+	'pageTitle' => isset($activite) ? 'Modifier une activité' : 'Créer une activité',
+	'pageSubtitle' => 'CRUD des activités sportives',
+]) ?>
 
-	<a href="<?= site_url('/exercices') ?>"><< Retour à la liste</a>
+<section class="page-shell">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-lg-9">
+				<div class="section-card">
+					<div class="d-flex justify-content-between align-items-center mb-4">
+						<div>
+							<span class="section-tag mb-2"><i class="bi bi-bicycle"></i> Activités</span>
+							<h1 class="h3 fw-bold mb-0"><?= isset($activite) ? 'Modifier une activité sportive' : 'Créer une activité sportive' ?></h1>
+						</div>
+						<a href="<?= site_url('/exercices') ?>" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-2"></i>Retour à la liste</a>
+					</div>
 
-	<?php if (isset($activite)): ?>
-		<h1>Modifier une activité sportive</h1>
-		<form action="<?= site_url('/exercices/' . $activite['id'] . '/edit') ?>" method="post">
-			<label for="nom">Nom:</label>
-			<input type="text" id="nom" name="nom" value="<?= esc($activite['nom']) ?>" required><br><br>
+					<form action="<?= isset($activite) ? site_url('/exercices/' . $activite['id'] . '/edit') : site_url('/exercices/create') ?>" method="post" class="split-grid two">
+						<div>
+							<label for="nom">Nom</label>
+							<input type="text" id="nom" name="nom" value="<?= esc((string) ($activite['nom'] ?? '')) ?>" class="form-control" required>
+						</div>
+						<div>
+							<label for="variation_poids">Variation de poids</label>
+							<input type="number" step="0.01" id="variation_poids" name="variation_poids" value="<?= esc((string) ($activite['variation_poids'] ?? '')) ?>" class="form-control" required>
+						</div>
+						<div>
+							<label for="duree">Durée</label>
+							<input type="number" id="duree" name="duree" value="<?= esc((string) ($activite['duree'] ?? '')) ?>" class="form-control" required>
+						</div>
+						<div class="col-12 d-flex justify-content-end">
+							<button type="submit" class="btn btn-primary"><?= isset($activite) ? 'Mettre à jour' : 'Créer' ?></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-			<label for="variation_poids">Variation de poids:</label>
-			<input type="number" step="0.01" id="variation_poids" name="variation_poids" value="<?= esc($activite['variation_poids']) ?>" required><br><br>
-
-			<label for="duree">Durée:</label>
-			<input type="number" id="duree" name="duree" value="<?= esc($activite['duree']) ?>" required><br><br>
-
-			<button type="submit">Mettre à jour</button>
-		</form>
-	<?php else: ?>
-		<h1>Créer une activité sportive</h1>
-		<form action="<?= site_url('/exercices/create') ?>" method="post">
-			<label for="nom">Nom:</label>
-			<input type="text" id="nom" name="nom" required><br><br>
-
-			<label for="variation_poids">Variation de poids:</label>
-			<input type="number" step="0.01" id="variation_poids" name="variation_poids" required><br><br>
-
-			<label for="duree">Durée:</label>
-			<input type="number" id="duree" name="duree" required><br><br>
-
-			<button type="submit">Créer</button>
-		</form>
-	<?php endif; ?>
-
-</body>
-</html>
+<?= view('header/footer') ?>
