@@ -21,28 +21,28 @@ INSERT INTO objectif(nom) VALUES
 ('Atteindre IMC ideal');
 
 INSERT INTO regime (id, nom, pourcentage_viande, pourcentage_poisson, pourcentage_volaille, variation_poids, duree_jour, prix) VALUES
-(1, 'Keto strict', 25.00, 5.00, 10.00, -2.00, 7, 35000.00),
-(2, 'Hyperproteine', 30.00, 5.00, 15.00, -3.00, 14, 50000.00),
-(3, 'Equilibre leger', 10.00, 10.00, 10.00, -1.00, 7, 15000.00),
-(4, 'Slim detox', 15.00, 15.00, 20.00, -1.50, 10, 28000.00),
-(5, 'Masse clean', 35.00, 10.00, 20.00, 2.50, 14, 60000.00);
+(1, 'Keto strict', 25.00, 5.00, 10.00, -2.00, 7, 3500.00),
+(2, 'Hyperproteine', 30.00, 5.00, 15.00, -3.00, 14, 5000.00),
+(3, 'Equilibre leger', 10.00, 10.00, 10.00, -1.00, 7, 1500.00),
+(4, 'Slim detox', 15.00, 15.00, 20.00, -1.50, 10, 2800.00),
+(5, 'Masse clean', 35.00, 10.00, 20.00, 2.50, 14, 6000.00);
 
 INSERT INTO code_rechargement (code, montant, status) VALUES
-('PROMO2026A', 10.00, 'valide'),
-('PROMO2026B', 15.00, 'valide'),
-('PROMO2026C', 20.00, 'valide'),
-('WELCOME01', 5.00, 'valide'),
-('WELCOME02', 5.00, 'valide'),
-('WELCOME03', 5.00, 'valide'),
-('GOLD2026', 25.00, 'valide'),
-('SILVER2026', 12.50, 'valide'),
-('BRONZE2026', 8.75, 'valide'),
-('BONUS100', 30.00, 'valide'),
-('BONUS200', 50.00, 'valide'),
-('SUMMER001', 15.50, 'valide'),
-('SUMMER002', 15.50, 'valide'),
-('SUMMER003', 15.50, 'valide'),
-('SPRING001', 10.25, 'valide');
+('PROMO2026A', 1000.00, 'valide'),
+('PROMO2026B', 1500.00, 'valide'),
+('PROMO2026C', 2000.00, 'valide'),
+('WELCOME01', 5000.00, 'valide'),
+('WELCOME02', 5000.00, 'valide'),
+('WELCOME03', 5000.00, 'valide'),
+('GOLD2026', 2500.00, 'valide'),
+('SILVER2026', 1200.50, 'valide'),
+('BRONZE2026', 8000.75, 'valide'),
+('BONUS100', 30000.00, 'valide'),
+('BONUS200', 5000.00, 'valide'),
+('SUMMER001', 1500.50, 'valide'),
+('SUMMER002', 15000.50, 'valide'),
+('SUMMER003', 1500.50, 'valide'),
+('SPRING001', 1000.25, 'valide');
 
 INSERT INTO activite_sportive (id, nom, variation_poids, duree) VALUES
 (1, 'Course a pied', -0.50, 2),
