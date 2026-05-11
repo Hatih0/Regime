@@ -39,7 +39,7 @@ if (!$fpdfLoaded && !class_exists('FPDF')) {
 
 
 
-class PDFModel extends \FPDF
+class PDFModel extends FPDF
 {
     private string $titreDocument;
 

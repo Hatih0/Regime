@@ -1,3 +1,5 @@
+DROP DATABASE regime;
+
 CREATE DATABASE IF NOT EXISTS regime;
 USE regime;
 
