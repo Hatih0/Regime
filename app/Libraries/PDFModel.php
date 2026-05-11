@@ -1,45 +1,25 @@
 <?php
 /**
  * Générateur de PDF — FPDF
- * composer require setasign/fpdf
+ * Chargement local depuis app/ThirdParty/fpdf/fpdf.php
  * 
  * À placer dans : app/Libraries/PDFModel.php
  */
 
 namespace App\Libraries;
 
-$fpdfLoaded = false;
-$vendorAutoload = ROOTPATH . 'vendor/autoload.php';
-if (file_exists($vendorAutoload)) {
-    require_once $vendorAutoload;
-    if (class_exists('FPDF')) $fpdfLoaded = true;
-}
-if (!$fpdfLoaded) {
-    $vendorDirect = ROOTPATH . 'vendor/setasign/fpdf/fpdf.php';
-    if (file_exists($vendorDirect)) {
-        require_once $vendorDirect;
-        if (class_exists('FPDF')) $fpdfLoaded = true;
-    }
-}
-if (!$fpdfLoaded) {
-    $thirdParty = APPPATH . 'ThirdParty/fpdf/fpdf.php';
-    if (file_exists($thirdParty)) {
-        require_once $thirdParty;
-        if (class_exists('FPDF')) $fpdfLoaded = true;
-    }
+$fpdfFile = APPPATH . 'ThirdParty/fpdf/fpdf.php';
+if (file_exists($fpdfFile)) {
+    require_once $fpdfFile;
 }
 
-if (!$fpdfLoaded && !class_exists('FPDF')) {
-    class FPDF {
-        public function __construct() {
-            throw new \RuntimeException("FPDF library not found. Install it with: composer require setasign/fpdf");
-        }
-    }
+if (!class_exists('FPDF')) {
+    throw new \RuntimeException('FPDF library not found. Expected file: app/ThirdParty/fpdf/fpdf.php');
 }
 
 
 
-class PDFModel extends FPDF
+class PDFModel extends \FPDF
 {
     private string $titreDocument;
 

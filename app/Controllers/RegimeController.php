@@ -78,6 +78,10 @@ class RegimeController extends BaseController
         [$w1, $w2, $w3] = $weights[$choix] ?? [0.33, 0.33, 0.33];
 
         $id_utilisateur = session()->get('user_id');
+        if (!is_numeric($id_utilisateur)) {
+            return redirect()->to('/login')->with('error', 'Session expirée. Veuillez vous reconnecter.');
+        }
+        $id_utilisateur = (int) $id_utilisateur;
 
         $objectifUserModel = new ObjectifUtilisateurModel();
 
