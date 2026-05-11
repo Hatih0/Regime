@@ -11,6 +11,10 @@
                     <span class="section-tag mb-3"><i class="bi bi-file-earmark-bar-graph"></i> Résultat</span>
                     <h1 class="h3 fw-bold mb-4">Résultat du calcul</h1>
 
+                    <?php if (!empty($errorMessage)): ?>
+                        <div class="status-box danger mb-4"><i class="bi bi-exclamation-triangle me-2"></i><?= htmlspecialchars($errorMessage) ?></div>
+                    <?php endif; ?>
+
                     <?php if (isset($resultat)): ?>
                         <?php if (!empty($resultat['message'])): ?>
                             <div class="status-box warning mb-4"><i class="bi bi-info-circle me-2"></i><?= htmlspecialchars($resultat['message']) ?></div>
@@ -56,11 +60,21 @@
                             </div>
                         <?php endif; ?>
 
-                        <form action="<?= site_url('/export/pdf') ?>" method="POST" class="d-flex justify-content-end">
-                            <?= csrf_field() ?>
-                            <input type="hidden" name="data" value="<?= base64_encode(serialize($resultat)) ?>">
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-filetype-pdf me-2"></i>Exporter en PDF</button>
-                        </form>
+                        <div class="d-flex flex-column flex-md-row justify-content-end gap-2">
+                            <form action="<?= site_url('/export/pdf') ?>" method="POST">
+                                <?= csrf_field() ?>
+                                <input type="hidden" name="data" value="<?= base64_encode(serialize($resultat)) ?>">
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-filetype-pdf me-2"></i>Exporter en PDF</button>
+                            </form>
+
+                            <?php if (empty($resultat['message']) && !empty($resultat['meilleure'])): ?>
+                                <form action="<?= site_url('/acheter-regime') ?>" method="POST">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="data" value="<?= base64_encode(serialize($resultat)) ?>">
+                                    <button type="submit" class="btn btn-success"><i class="bi bi-bag-check me-2"></i>Acheter le régime</button>
+                                </form>
+                            <?php endif; ?>
+                        </div>
 
                         <?php if (!empty($resultat['meilleure'])): ?>
                             <div class="section-card mt-4">

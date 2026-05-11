@@ -78,5 +78,6 @@ $routes->post('/buy-gold', 'UtilisateurController::buyGold');
 
 $routes->get('choix-regime', 'RegimeController::choixRegime');
 $routes->post('calcul-regime', 'RegimeController::calculRegime');
+$routes->post('acheter-regime', 'RegimeController::acheterRegime');
 
 $routes->post('export/pdf', 'RegimeController::pdfExport');

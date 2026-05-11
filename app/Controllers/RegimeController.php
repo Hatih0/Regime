@@ -6,6 +6,7 @@ use App\Models\RegimeModel;
 use App\Models\ActiviteModel;
 use App\Models\CombinaisonModel;
 use App\Models\UtilisateurModel;
+use App\Models\PortefeuilleModel;
 use App\Models\SanteUtilisateurModel;
 use App\Models\ObjectifUtilisateurModel;
 use App\Libraries\PDFModel;
@@ -13,10 +14,12 @@ use App\Libraries\PDFModel;
 class RegimeController extends BaseController
 {
     protected $regimeModel;
+    protected $portefeuilleModel;
 
     public function __construct()
     {
         $this->regimeModel = new RegimeModel();
+        $this->portefeuilleModel = new PortefeuilleModel();
     }
 
     public function index()
@@ -139,6 +142,89 @@ class RegimeController extends BaseController
         ];
 
         return view('regime/resultat-regime', ['resultat' => $resultat]);
+    }
+
+    public function acheterRegime()
+    {
+        if (!session()->get('is_logged')) {
+            return redirect()->to('/login')->with('error', 'Vous devez être connecté.');
+        }
+
+        $userId = session()->get('user_id');
+        if (!is_numeric($userId)) {
+            return redirect()->to('/login')->with('error', 'Session expirée. Veuillez vous reconnecter.');
+        }
+
+        $encodedResult = (string) $this->request->getPost('data');
+        if ($encodedResult === '') {
+            return redirect()->back()->with('error', 'Données d’achat manquantes.');
+        }
+
+        $decodedResult = base64_decode($encodedResult, true);
+        $resultat = $decodedResult !== false ? @unserialize($decodedResult) : false;
+
+        if (!$resultat || !is_array($resultat) || empty($resultat['meilleure']['regimes']) || !is_array($resultat['meilleure']['regimes'])) {
+            return redirect()->back()->with('error', 'Données de régime invalides.');
+        }
+
+        $nbJours = max(1, (int) ($resultat['nb_jours'] ?? 1));
+        $discountFactor = !empty($resultat['remise_gold']) ? 0.85 : 1.0;
+
+        $rowsToInsert = [];
+        foreach ($resultat['meilleure']['regimes'] as $regime) {
+            $idRegime = (int) ($regime['id'] ?? $regime['id_regime'] ?? 0);
+            if ($idRegime <= 0) {
+                continue;
+            }
+
+            $duree = max(1, (int) ($regime['duree_jour'] ?? 1));
+            $prix = (float) ($regime['prix'] ?? 0);
+
+            $rowsToInsert[] = [
+                'id_utilisateur' => (int) $userId,
+                'id_regime'      => $idRegime,
+                'prix_paye'      => round(($prix / $duree) * $nbJours * $discountFactor, 2),
+            ];
+        }
+
+        if (empty($rowsToInsert)) {
+            return redirect()->back()->with('error', 'Aucun régime valide à acheter.');
+        }
+
+        $totalAchat = round(array_sum(array_column($rowsToInsert, 'prix_paye')), 2);
+
+        $port = $this->portefeuilleModel->getByUser((int) $userId);
+        if (! $port) {
+            $this->portefeuilleModel->createForUser((int) $userId);
+            $port = $this->portefeuilleModel->getByUser((int) $userId);
+        }
+
+        $soldeActuel = (float) ($port['solde'] ?? 0);
+        if ($soldeActuel < $totalAchat) {
+            return view('regime/resultat-regime', [
+                'resultat' => $resultat,
+                'errorMessage' => 'Solde insuffisant. Il vous manque ' . number_format($totalAchat - $soldeActuel, 2) . '€',
+            ]);
+        }
+
+        $db = db_connect();
+        $db->transStart();
+
+        $db->table('portefeuille')
+            ->where('id', (int) $port['id'])
+            ->update(['solde' => round($soldeActuel - $totalAchat, 2)]);
+
+        foreach ($rowsToInsert as $row) {
+            $db->table('achat_regime')->insert($row);
+        }
+
+        $db->transComplete();
+
+        if ($db->transStatus() === false) {
+            return redirect()->back()->with('error', 'Impossible d’enregistrer l’achat du régime.');
+        }
+
+        return redirect()->to('/choix-regime')->with('success', 'Régime acheté avec succès.');
     }
 
     public function choixRegime()
